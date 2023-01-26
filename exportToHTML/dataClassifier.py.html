@@ -1,0 +1,435 @@
+<html>
+<head>
+<title>dataClassifier.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #cc7832;}
+.s3 { color: #6897bb;}
+.s4 { color: #629755; font-style: italic;}
+.s5 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+dataClassifier.py</font>
+</center></td></tr></table>
+<pre><span class="s0"># This file contains feature extraction methods and harness</span>
+<span class="s0"># code for data classification</span>
+<span class="s2">import </span><span class="s1">numpy</span>
+<span class="s2">import </span><span class="s1">matplotlib.pyplot </span><span class="s2">as </span><span class="s1">plt</span>
+<span class="s2">import </span><span class="s1">mostFrequent</span>
+<span class="s2">import </span><span class="s1">naiveBayes</span>
+<span class="s2">import </span><span class="s1">perceptron</span>
+<span class="s2">import </span><span class="s1">mira</span>
+<span class="s2">import </span><span class="s1">minicontest</span>
+<span class="s2">import </span><span class="s1">samples</span>
+<span class="s2">import </span><span class="s1">sys</span>
+<span class="s2">import </span><span class="s1">util</span>
+<span class="s2">import </span><span class="s1">time</span>
+<span class="s2">import </span><span class="s1">random</span>
+
+<span class="s1">TEST_SET_SIZE = </span><span class="s3">100</span>
+<span class="s1">DIGIT_DATUM_WIDTH = </span><span class="s3">28</span>
+<span class="s1">DIGIT_DATUM_HEIGHT = </span><span class="s3">28</span>
+<span class="s1">FACE_DATUM_WIDTH = </span><span class="s3">60</span>
+<span class="s1">FACE_DATUM_HEIGHT = </span><span class="s3">70</span>
+
+
+<span class="s2">def </span><span class="s1">basicFeatureExtractorDigit(datum):</span>
+    <span class="s4">&quot;&quot;&quot; 
+  Returns a set of pixel features indicating whether 
+  each pixel in the provided datum is white (0) or gray/black (1) 
+  &quot;&quot;&quot;</span>
+    <span class="s1">a = datum.getPixels()</span>
+
+    <span class="s1">features = util.Counter()</span>
+    <span class="s2">for </span><span class="s1">x </span><span class="s2">in </span><span class="s1">range(DIGIT_DATUM_WIDTH):</span>
+        <span class="s2">for </span><span class="s1">y </span><span class="s2">in </span><span class="s1">range(DIGIT_DATUM_HEIGHT):</span>
+            <span class="s2">if </span><span class="s1">datum.getPixel(x</span><span class="s2">, </span><span class="s1">y) &gt; </span><span class="s3">0</span><span class="s1">:</span>
+                <span class="s1">features[(x</span><span class="s2">, </span><span class="s1">y)] = </span><span class="s3">1</span>
+            <span class="s2">else</span><span class="s1">:</span>
+                <span class="s1">features[(x</span><span class="s2">, </span><span class="s1">y)] = </span><span class="s3">0</span>
+    <span class="s0"># print(features)</span>
+    <span class="s2">return </span><span class="s1">features</span>
+
+
+<span class="s2">def </span><span class="s1">basicFeatureExtractorFace(datum):</span>
+    <span class="s4">&quot;&quot;&quot; 
+  Returns a set of pixel features indicating whether 
+  each pixel in the provided datum is an edge (1) or no edge (0) 
+  &quot;&quot;&quot;</span>
+    <span class="s1">a = datum.getPixels()</span>
+
+    <span class="s1">features = util.Counter()</span>
+    <span class="s2">for </span><span class="s1">x </span><span class="s2">in </span><span class="s1">range(FACE_DATUM_WIDTH):</span>
+        <span class="s2">for </span><span class="s1">y </span><span class="s2">in </span><span class="s1">range(FACE_DATUM_HEIGHT):</span>
+            <span class="s2">if </span><span class="s1">datum.getPixel(x</span><span class="s2">, </span><span class="s1">y) &gt; </span><span class="s3">0</span><span class="s1">:</span>
+                <span class="s1">features[(x</span><span class="s2">, </span><span class="s1">y)] = </span><span class="s3">1</span>
+            <span class="s2">else</span><span class="s1">:</span>
+                <span class="s1">features[(x</span><span class="s2">, </span><span class="s1">y)] = </span><span class="s3">0</span>
+
+    <span class="s2">return </span><span class="s1">features</span>
+
+
+<span class="s2">def </span><span class="s1">enhancedFeatureExtractorDigit(datum):</span>
+    <span class="s4">&quot;&quot;&quot; 
+  Your feature extraction playground. 
+ 
+  You should return a util.counter() of features 
+  for this datum (datum is of type samples.Datum). 
+ 
+  ## DESCRIBE YOUR ENHANCED FEATURES HERE... 
+ 
+  ## 
+  &quot;&quot;&quot;</span>
+    <span class="s1">features = basicFeatureExtractorDigit(datum)</span>
+
+    <span class="s5">&quot;*** YOUR CODE HERE ***&quot;</span>
+
+    <span class="s2">return </span><span class="s1">features</span>
+
+
+<span class="s2">def </span><span class="s1">contestFeatureExtractorDigit(datum):</span>
+    <span class="s4">&quot;&quot;&quot; 
+  Specify features to use for the minicontest 
+  &quot;&quot;&quot;</span>
+    <span class="s1">features = basicFeatureExtractorDigit(datum)</span>
+    <span class="s2">return </span><span class="s1">features</span>
+
+
+<span class="s2">def </span><span class="s1">enhancedFeatureExtractorFace(datum):</span>
+    <span class="s4">&quot;&quot;&quot; 
+  Your feature extraction playground for faces. 
+  It is your choice to modify this. 
+  &quot;&quot;&quot;</span>
+    <span class="s1">features = basicFeatureExtractorFace(datum)</span>
+    <span class="s2">return </span><span class="s1">features</span>
+
+
+<span class="s2">def </span><span class="s1">analysis(classifier</span><span class="s2">, </span><span class="s1">guesses</span><span class="s2">, </span><span class="s1">testLabels</span><span class="s2">, </span><span class="s1">testData</span><span class="s2">, </span><span class="s1">rawTestData</span><span class="s2">, </span><span class="s1">printImage):</span>
+    <span class="s4">&quot;&quot;&quot; 
+  This function is called after learning. 
+  Include any code that you want here to help you analyze your results. 
+ 
+  Use the printImage(&lt;list of pixels&gt;) function to visualize features. 
+ 
+  An example of use has been given to you. 
+ 
+  - classifier is the trained classifier 
+  - guesses is the list of labels predicted by your classifier on the test set 
+  - testLabels is the list of true labels 
+  - testData is the list of training datapoints (as util.Counter of features) 
+  - rawTestData is the list of training datapoints (as samples.Datum) 
+  - printImage is a method to visualize the features 
+  (see its use in the odds ratio part in runClassifier method) 
+ 
+  This code won't be evaluated. It is for your own optional use 
+  (and you can modify the signature if you want). 
+  &quot;&quot;&quot;</span>
+
+    <span class="s0"># Put any code here...</span>
+    <span class="s0"># Example of use:</span>
+    <span class="s2">for </span><span class="s1">i </span><span class="s2">in </span><span class="s1">range(len(guesses)):</span>
+        <span class="s1">prediction = guesses[i]</span>
+        <span class="s1">truth = testLabels[i]</span>
+        <span class="s2">if </span><span class="s1">(prediction != truth):</span>
+            <span class="s1">print(</span><span class="s5">&quot;===================================&quot;</span><span class="s1">)</span>
+            <span class="s1">print(</span><span class="s5">&quot;Mistake on example %d&quot; </span><span class="s1">% i)</span>
+            <span class="s1">print(</span><span class="s5">&quot;Predicted %d; truth is %d&quot; </span><span class="s1">% (prediction</span><span class="s2">, </span><span class="s1">truth))</span>
+            <span class="s1">print(</span><span class="s5">&quot;Image: &quot;</span><span class="s1">)</span>
+            <span class="s1">print(rawTestData[i])</span>
+            <span class="s2">break</span>
+
+
+<span class="s0">## =====================</span>
+<span class="s0">## You don't have to modify any code below.</span>
+<span class="s0">## =====================</span>
+
+
+<span class="s2">class </span><span class="s1">ImagePrinter:</span>
+    <span class="s2">def </span><span class="s1">__init__(self</span><span class="s2">, </span><span class="s1">width</span><span class="s2">, </span><span class="s1">height):</span>
+        <span class="s1">self.width = width</span>
+        <span class="s1">self.height = height</span>
+
+    <span class="s2">def </span><span class="s1">printImage(self</span><span class="s2">, </span><span class="s1">pixels):</span>
+        <span class="s4">&quot;&quot;&quot; 
+      Prints a Datum object that contains all pixels in the 
+      provided list of pixels.  This will serve as a helper function 
+      to the analysis function you write. 
+ 
+      Pixels should take the form 
+      [(2,2), (2, 3), ...] 
+      where each tuple represents a pixel. 
+      &quot;&quot;&quot;</span>
+        <span class="s1">image = samples.Datum(</span><span class="s2">None, </span><span class="s1">self.width</span><span class="s2">, </span><span class="s1">self.height)</span>
+        <span class="s2">for </span><span class="s1">pix </span><span class="s2">in </span><span class="s1">pixels:</span>
+            <span class="s2">try</span><span class="s1">:</span>
+                <span class="s0"># This is so that new features that you could define which</span>
+                <span class="s0"># which are not of the form of (x,y) will not break</span>
+                <span class="s0"># this image printer...</span>
+                <span class="s1">x</span><span class="s2">, </span><span class="s1">y = pix</span>
+                <span class="s1">image.pixels[x][y] = </span><span class="s3">2</span>
+            <span class="s2">except</span><span class="s1">:</span>
+                <span class="s1">print(</span><span class="s5">&quot;new features:&quot;</span><span class="s2">, </span><span class="s1">pix)</span>
+                <span class="s2">continue</span>
+        <span class="s1">print(image)</span>
+
+
+<span class="s2">def </span><span class="s1">default(str):</span>
+    <span class="s2">return </span><span class="s1">str + </span><span class="s5">' [Default: %default]'</span>
+
+
+<span class="s2">def </span><span class="s1">readCommand(argv):</span>
+    <span class="s4">&quot;Processes the command used to run from the command line.&quot;</span>
+    <span class="s2">from </span><span class="s1">optparse </span><span class="s2">import </span><span class="s1">OptionParser</span>
+    <span class="s1">parser = OptionParser(USAGE_STRING)</span>
+
+    <span class="s1">parser.add_option(</span><span class="s5">'-c'</span><span class="s2">, </span><span class="s5">'--classifier'</span><span class="s2">, </span><span class="s1">help=default(</span><span class="s5">'The type of classifier'</span><span class="s1">)</span><span class="s2">,</span>
+                      <span class="s1">choices=[</span><span class="s5">'mostFrequent'</span><span class="s2">, </span><span class="s5">'nb'</span><span class="s2">, </span><span class="s5">'naiveBayes'</span><span class="s2">, </span><span class="s5">'perceptron'</span><span class="s2">, </span><span class="s5">'mira'</span><span class="s2">, </span><span class="s5">'minicontest'</span><span class="s1">]</span><span class="s2">,</span>
+                      <span class="s1">default=</span><span class="s5">'naiveBayes'</span><span class="s1">)</span>
+    <span class="s1">parser.add_option(</span><span class="s5">'-d'</span><span class="s2">, </span><span class="s5">'--data'</span><span class="s2">, </span><span class="s1">help=default(</span><span class="s5">'Dataset to use'</span><span class="s1">)</span><span class="s2">, </span><span class="s1">choices=[</span><span class="s5">'digits'</span><span class="s2">, </span><span class="s5">'faces'</span><span class="s1">]</span><span class="s2">, </span><span class="s1">default=</span><span class="s5">'digits'</span><span class="s1">)</span>
+    <span class="s1">parser.add_option(</span><span class="s5">'-t'</span><span class="s2">, </span><span class="s5">'--training'</span><span class="s2">, </span><span class="s1">help=default(</span><span class="s5">'The size of the training set'</span><span class="s1">)</span><span class="s2">, </span><span class="s1">default=</span><span class="s3">100</span><span class="s2">, </span><span class="s1">type=</span><span class="s5">&quot;int&quot;</span><span class="s1">)</span>
+    <span class="s1">parser.add_option(</span><span class="s5">'-f'</span><span class="s2">, </span><span class="s5">'--features'</span><span class="s2">, </span><span class="s1">help=default(</span><span class="s5">'Whether to use enhanced features'</span><span class="s1">)</span><span class="s2">, </span><span class="s1">default=</span><span class="s2">False,</span>
+                      <span class="s1">action=</span><span class="s5">&quot;store_true&quot;</span><span class="s1">)</span>
+    <span class="s1">parser.add_option(</span><span class="s5">'-o'</span><span class="s2">, </span><span class="s5">'--odds'</span><span class="s2">, </span><span class="s1">help=default(</span><span class="s5">'Whether to compute odds ratios'</span><span class="s1">)</span><span class="s2">, </span><span class="s1">default=</span><span class="s2">False,</span>
+                      <span class="s1">action=</span><span class="s5">&quot;store_true&quot;</span><span class="s1">)</span>
+    <span class="s1">parser.add_option(</span><span class="s5">'-1'</span><span class="s2">, </span><span class="s5">'--label1'</span><span class="s2">, </span><span class="s1">help=default(</span><span class="s5">&quot;First label in an odds ratio comparison&quot;</span><span class="s1">)</span><span class="s2">, </span><span class="s1">default=</span><span class="s3">0</span><span class="s2">, </span><span class="s1">type=</span><span class="s5">&quot;int&quot;</span><span class="s1">)</span>
+    <span class="s1">parser.add_option(</span><span class="s5">'-2'</span><span class="s2">, </span><span class="s5">'--label2'</span><span class="s2">, </span><span class="s1">help=default(</span><span class="s5">&quot;Second label in an odds ratio comparison&quot;</span><span class="s1">)</span><span class="s2">, </span><span class="s1">default=</span><span class="s3">1</span><span class="s2">, </span><span class="s1">type=</span><span class="s5">&quot;int&quot;</span><span class="s1">)</span>
+    <span class="s1">parser.add_option(</span><span class="s5">'-k'</span><span class="s2">, </span><span class="s5">'--smoothing'</span><span class="s2">, </span><span class="s1">help=default(</span><span class="s5">&quot;Smoothing parameter (ignored when using --autotune)&quot;</span><span class="s1">)</span><span class="s2">,</span>
+                      <span class="s1">type=</span><span class="s5">&quot;float&quot;</span><span class="s2">, </span><span class="s1">default=</span><span class="s3">2.0</span><span class="s1">)</span>
+    <span class="s1">parser.add_option(</span><span class="s5">'-a'</span><span class="s2">, </span><span class="s5">'--autotune'</span><span class="s2">, </span><span class="s1">help=default(</span><span class="s5">&quot;Whether to automatically tune hyperparameters&quot;</span><span class="s1">)</span><span class="s2">, </span><span class="s1">default=</span><span class="s2">False,</span>
+                      <span class="s1">action=</span><span class="s5">&quot;store_true&quot;</span><span class="s1">)</span>
+    <span class="s1">parser.add_option(</span><span class="s5">'-i'</span><span class="s2">, </span><span class="s5">'--iterations'</span><span class="s2">, </span><span class="s1">help=default(</span><span class="s5">&quot;Maximum iterations to run training&quot;</span><span class="s1">)</span><span class="s2">, </span><span class="s1">default=</span><span class="s3">3</span><span class="s2">, </span><span class="s1">type=</span><span class="s5">&quot;int&quot;</span><span class="s1">)</span>
+
+    <span class="s1">options</span><span class="s2">, </span><span class="s1">otherjunk = parser.parse_args(argv)</span>
+    <span class="s2">if </span><span class="s1">len(otherjunk) != </span><span class="s3">0</span><span class="s1">: </span><span class="s2">raise </span><span class="s1">Exception(</span><span class="s5">'Command line input not understood: ' </span><span class="s1">+ str(otherjunk))</span>
+    <span class="s1">args = {}</span>
+
+    <span class="s0"># Set up variables according to the command line input.</span>
+    <span class="s1">print(</span><span class="s5">&quot;Doing classification&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">&quot;--------------------&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">&quot;data:</span><span class="s2">\t\t</span><span class="s5">&quot; </span><span class="s1">+ options.data)</span>
+    <span class="s1">print(</span><span class="s5">&quot;classifier:</span><span class="s2">\t\t</span><span class="s5">&quot; </span><span class="s1">+ options.classifier)</span>
+    <span class="s2">if not </span><span class="s1">options.classifier == </span><span class="s5">'minicontest'</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s5">&quot;using enhanced features?:</span><span class="s2">\t</span><span class="s5">&quot; </span><span class="s1">+ str(options.features))</span>
+    <span class="s2">else</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s5">&quot;using minicontest feature extractor&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">&quot;training set size:</span><span class="s2">\t</span><span class="s5">&quot; </span><span class="s1">+ str(options.training))</span>
+    <span class="s2">if </span><span class="s1">(options.data == </span><span class="s5">&quot;digits&quot;</span><span class="s1">):</span>
+        <span class="s1">printImage = ImagePrinter(DIGIT_DATUM_WIDTH</span><span class="s2">, </span><span class="s1">DIGIT_DATUM_HEIGHT).printImage</span>
+        <span class="s2">if </span><span class="s1">(options.features):</span>
+            <span class="s1">featureFunction = enhancedFeatureExtractorDigit</span>
+        <span class="s2">else</span><span class="s1">:</span>
+            <span class="s1">featureFunction = basicFeatureExtractorDigit</span>
+        <span class="s2">if </span><span class="s1">(options.classifier == </span><span class="s5">'minicontest'</span><span class="s1">):</span>
+            <span class="s1">featureFunction = contestFeatureExtractorDigit</span>
+    <span class="s2">elif </span><span class="s1">(options.data == </span><span class="s5">&quot;faces&quot;</span><span class="s1">):</span>
+        <span class="s1">printImage = ImagePrinter(FACE_DATUM_WIDTH</span><span class="s2">, </span><span class="s1">FACE_DATUM_HEIGHT).printImage</span>
+        <span class="s2">if </span><span class="s1">(options.features):</span>
+            <span class="s1">featureFunction = enhancedFeatureExtractorFace</span>
+        <span class="s2">else</span><span class="s1">:</span>
+            <span class="s1">featureFunction = basicFeatureExtractorFace</span>
+    <span class="s2">else</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s5">&quot;Unknown dataset&quot;</span><span class="s2">, </span><span class="s1">options.data)</span>
+        <span class="s1">print(USAGE_STRING)</span>
+        <span class="s1">sys.exit(</span><span class="s3">2</span><span class="s1">)</span>
+
+    <span class="s2">if </span><span class="s1">(options.data == </span><span class="s5">&quot;digits&quot;</span><span class="s1">):</span>
+        <span class="s1">legalLabels = range(</span><span class="s3">10</span><span class="s1">)</span>
+    <span class="s2">else</span><span class="s1">:</span>
+        <span class="s1">legalLabels = range(</span><span class="s3">2</span><span class="s1">)</span>
+
+    <span class="s2">if </span><span class="s1">options.training &lt;= </span><span class="s3">0</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s5">&quot;Training set size should be a positive integer (you provided: %d)&quot; </span><span class="s1">% options.training)</span>
+        <span class="s1">print(USAGE_STRING)</span>
+        <span class="s1">sys.exit(</span><span class="s3">2</span><span class="s1">)</span>
+
+    <span class="s2">if </span><span class="s1">options.smoothing &lt;= </span><span class="s3">0</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s5">&quot;Please provide a positive number for smoothing (you provided: %f)&quot; </span><span class="s1">% options.smoothing)</span>
+        <span class="s1">print(USAGE_STRING)</span>
+        <span class="s1">sys.exit(</span><span class="s3">2</span><span class="s1">)</span>
+
+    <span class="s2">if </span><span class="s1">options.odds:</span>
+        <span class="s2">if </span><span class="s1">options.label1 </span><span class="s2">not in </span><span class="s1">legalLabels </span><span class="s2">or </span><span class="s1">options.label2 </span><span class="s2">not in </span><span class="s1">legalLabels:</span>
+            <span class="s1">print(</span><span class="s5">&quot;Didn't provide a legal labels for the odds ratio: (%d,%d)&quot; </span><span class="s1">% (options.label1</span><span class="s2">, </span><span class="s1">options.label2))</span>
+            <span class="s1">print(USAGE_STRING)</span>
+            <span class="s1">sys.exit(</span><span class="s3">2</span><span class="s1">)</span>
+
+    <span class="s2">if </span><span class="s1">(options.classifier == </span><span class="s5">&quot;mostFrequent&quot;</span><span class="s1">):</span>
+        <span class="s1">classifier = mostFrequent.MostFrequentClassifier(legalLabels)</span>
+    <span class="s2">elif </span><span class="s1">(options.classifier == </span><span class="s5">&quot;naiveBayes&quot; </span><span class="s2">or </span><span class="s1">options.classifier == </span><span class="s5">&quot;nb&quot;</span><span class="s1">):</span>
+        <span class="s1">classifier = naiveBayes.NaiveBayesClassifier(legalLabels)</span>
+        <span class="s1">classifier.setSmoothing(options.smoothing)</span>
+        <span class="s2">if </span><span class="s1">(options.autotune):</span>
+            <span class="s1">print(</span><span class="s5">&quot;using automatic tuning for naivebayes&quot;</span><span class="s1">)</span>
+            <span class="s1">classifier.automaticTuning = </span><span class="s2">True</span>
+        <span class="s2">else</span><span class="s1">:</span>
+            <span class="s1">print(</span><span class="s5">&quot;using smoothing parameter k=%f for naivebayes&quot; </span><span class="s1">% options.smoothing)</span>
+    <span class="s2">elif </span><span class="s1">(options.classifier == </span><span class="s5">&quot;perceptron&quot;</span><span class="s1">):</span>
+        <span class="s1">classifier = perceptron.PerceptronClassifier(legalLabels</span><span class="s2">, </span><span class="s1">options.iterations)</span>
+    <span class="s2">elif </span><span class="s1">(options.classifier == </span><span class="s5">&quot;mira&quot;</span><span class="s1">):</span>
+        <span class="s1">classifier = mira.MiraClassifier(legalLabels</span><span class="s2">, </span><span class="s1">options.iterations)</span>
+        <span class="s2">if </span><span class="s1">(options.autotune):</span>
+            <span class="s1">print(</span><span class="s5">&quot;using automatic tuning for MIRA&quot;</span><span class="s1">)</span>
+            <span class="s1">classifier.automaticTuning = </span><span class="s2">True</span>
+        <span class="s2">else</span><span class="s1">:</span>
+            <span class="s1">print(</span><span class="s5">&quot;using default C=0.001 for MIRA&quot;</span><span class="s1">)</span>
+    <span class="s2">elif </span><span class="s1">(options.classifier == </span><span class="s5">'minicontest'</span><span class="s1">):</span>
+        <span class="s1">classifier = minicontest.contestClassifier(legalLabels)</span>
+    <span class="s2">else</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s5">&quot;Unknown classifier:&quot;</span><span class="s2">, </span><span class="s1">options.classifier)</span>
+        <span class="s1">print(USAGE_STRING)</span>
+
+        <span class="s1">sys.exit(</span><span class="s3">2</span><span class="s1">)</span>
+
+    <span class="s1">args[</span><span class="s5">'classifier'</span><span class="s1">] = classifier</span>
+    <span class="s1">args[</span><span class="s5">'featureFunction'</span><span class="s1">] = featureFunction</span>
+    <span class="s1">args[</span><span class="s5">'printImage'</span><span class="s1">] = printImage</span>
+
+    <span class="s2">return </span><span class="s1">args</span><span class="s2">, </span><span class="s1">options</span>
+
+
+<span class="s1">USAGE_STRING = </span><span class="s5">&quot;&quot;&quot; 
+  USAGE:      python dataClassifier.py &lt;options&gt; 
+  EXAMPLES:   (1) python dataClassifier.py 
+                  - trains the default mostFrequent classifier on the digit dataset 
+                  using the default 100 training examples and 
+                  then test the classifier on test data 
+              (2) python dataClassifier.py -c naiveBayes -d digits -t 1000 -f -o -1 3 -2 6 -k 2.5 
+                  - would run the naive Bayes classifier on 1000 training examples 
+                  using the enhancedFeatureExtractorDigits function to get the features 
+                  on the faces dataset, would use the smoothing parameter equals to 2.5, would 
+                  test the classifier on the test data and performs an odd ratio analysis 
+                  with label1=3 vs. label2=6 
+                 &quot;&quot;&quot;</span>
+
+
+<span class="s0"># Main harness code</span>
+
+<span class="s2">def </span><span class="s1">runClassifier(args</span><span class="s2">, </span><span class="s1">options):</span>
+    <span class="s1">featureFunction = args[</span><span class="s5">'featureFunction'</span><span class="s1">]</span>
+    <span class="s1">classifier = args[</span><span class="s5">'classifier'</span><span class="s1">]</span>
+    <span class="s1">printImage = args[</span><span class="s5">'printImage'</span><span class="s1">]</span>
+
+    <span class="s0"># Load data</span>
+    <span class="s1">numTraining = options.training</span>
+
+    <span class="s2">if </span><span class="s1">(options.data == </span><span class="s5">&quot;faces&quot;</span><span class="s1">):</span>
+        <span class="s1">rawTrainingData = samples.loadDataFile(</span><span class="s5">&quot;facedata/facedatatrain&quot;</span><span class="s2">, </span><span class="s1">numTraining</span><span class="s2">, </span><span class="s1">FACE_DATUM_WIDTH</span><span class="s2">,</span>
+                                               <span class="s1">FACE_DATUM_HEIGHT)</span>
+        <span class="s1">trainingLabels = samples.loadLabelsFile(</span><span class="s5">&quot;facedata/facedatatrainlabels&quot;</span><span class="s2">, </span><span class="s1">numTraining)</span>
+        <span class="s1">rawValidationData = samples.loadDataFile(</span><span class="s5">&quot;facedata/facedatatrain&quot;</span><span class="s2">, </span><span class="s1">TEST_SET_SIZE</span><span class="s2">, </span><span class="s1">FACE_DATUM_WIDTH</span><span class="s2">,</span>
+                                                 <span class="s1">FACE_DATUM_HEIGHT)</span>
+        <span class="s1">validationLabels = samples.loadLabelsFile(</span><span class="s5">&quot;facedata/facedatatrainlabels&quot;</span><span class="s2">, </span><span class="s1">TEST_SET_SIZE)</span>
+        <span class="s1">rawTestData = samples.loadDataFile(</span><span class="s5">&quot;facedata/facedatatest&quot;</span><span class="s2">, </span><span class="s1">TEST_SET_SIZE</span><span class="s2">, </span><span class="s1">FACE_DATUM_WIDTH</span><span class="s2">, </span><span class="s1">FACE_DATUM_HEIGHT)</span>
+        <span class="s1">testLabels = samples.loadLabelsFile(</span><span class="s5">&quot;facedata/facedatatestlabels&quot;</span><span class="s2">, </span><span class="s1">TEST_SET_SIZE)</span>
+    <span class="s2">else</span><span class="s1">:</span>
+        <span class="s1">rawTrainingData = samples.loadDataFile(</span><span class="s5">&quot;digitdata/trainingimages&quot;</span><span class="s2">, </span><span class="s1">numTraining</span><span class="s2">, </span><span class="s1">DIGIT_DATUM_WIDTH</span><span class="s2">,</span>
+                                               <span class="s1">DIGIT_DATUM_HEIGHT)</span>
+        <span class="s1">trainingLabels = samples.loadLabelsFile(</span><span class="s5">&quot;digitdata/traininglabels&quot;</span><span class="s2">, </span><span class="s1">numTraining)</span>
+        <span class="s1">rawValidationData = samples.loadDataFile(</span><span class="s5">&quot;digitdata/validationimages&quot;</span><span class="s2">, </span><span class="s1">TEST_SET_SIZE</span><span class="s2">, </span><span class="s1">DIGIT_DATUM_WIDTH</span><span class="s2">,</span>
+                                                 <span class="s1">DIGIT_DATUM_HEIGHT)</span>
+        <span class="s1">validationLabels = samples.loadLabelsFile(</span><span class="s5">&quot;digitdata/validationlabels&quot;</span><span class="s2">, </span><span class="s1">TEST_SET_SIZE)</span>
+        <span class="s1">rawTestData = samples.loadDataFile(</span><span class="s5">&quot;digitdata/testimages&quot;</span><span class="s2">, </span><span class="s1">TEST_SET_SIZE</span><span class="s2">, </span><span class="s1">DIGIT_DATUM_WIDTH</span><span class="s2">, </span><span class="s1">DIGIT_DATUM_HEIGHT)</span>
+        <span class="s1">testLabels = samples.loadLabelsFile(</span><span class="s5">&quot;digitdata/testlabels&quot;</span><span class="s2">, </span><span class="s1">TEST_SET_SIZE)</span>
+
+    <span class="s0"># Extract features</span>
+    <span class="s1">print(</span><span class="s5">&quot;Extracting features...&quot;</span><span class="s1">)</span>
+    <span class="s1">trainingData = list(map(featureFunction</span><span class="s2">, </span><span class="s1">rawTrainingData))</span>
+    <span class="s1">validationData = list(map(featureFunction</span><span class="s2">, </span><span class="s1">rawValidationData))</span>
+    <span class="s1">testData = list(map(featureFunction</span><span class="s2">, </span><span class="s1">rawTestData))</span>
+    <span class="s1">org_testData = testData</span>
+    <span class="s1">org_testLabels = testLabels</span>
+    <span class="s1">org_trainingData = trainingData</span>
+    <span class="s1">org_trainingLabels = trainingLabels</span>
+    <span class="s1">org_validationData = validationData</span>
+    <span class="s1">org_validationLabels = validationLabels</span>
+    <span class="s1">run_data = dict()</span>
+    <span class="s2">for </span><span class="s1">j </span><span class="s2">in </span><span class="s1">range(</span><span class="s3">10</span><span class="s2">, </span><span class="s3">110</span><span class="s2">, </span><span class="s3">10</span><span class="s1">):</span>
+        <span class="s1">l_test = list()</span>
+        <span class="s1">l_time = list()</span>
+        <span class="s2">for </span><span class="s1">i </span><span class="s2">in </span><span class="s1">range(</span><span class="s3">5</span><span class="s1">):</span>
+            <span class="s1">print(</span><span class="s5">&quot;___________________________________________________________________________________&quot;</span><span class="s1">)</span>
+            <span class="s1">print(</span><span class="s5">&quot;Training with &quot; </span><span class="s1">+ str(j) + </span><span class="s5">&quot;% Random Data Set with iteration of &quot; </span><span class="s1">+ str(i))</span>
+            <span class="s1">trainingData = list()</span>
+            <span class="s1">trainingLabels = list()</span>
+            <span class="s1">validationData = list()</span>
+            <span class="s1">validationLabels = list()</span>
+            <span class="s1">index_value = dict(random.sample(list(enumerate(org_trainingData))</span><span class="s2">, </span><span class="s1">j))</span>
+            <span class="s1">trainingData = list(index_value.values())</span>
+            <span class="s2">for </span><span class="s1">i </span><span class="s2">in </span><span class="s1">index_value.keys():</span>
+                <span class="s1">trainingLabels.append(org_trainingLabels[i])</span>
+            <span class="s1">index_value = dict(random.sample(list(enumerate(org_validationData))</span><span class="s2">, </span><span class="s1">j))</span>
+            <span class="s1">validationData = list(index_value.values())</span>
+            <span class="s2">for </span><span class="s1">i </span><span class="s2">in </span><span class="s1">index_value.keys():</span>
+                <span class="s1">validationLabels.append(org_validationLabels[i])</span>
+
+            <span class="s0"># Conduct training and testing</span>
+            <span class="s1">print(</span><span class="s5">&quot;Training...&quot;</span><span class="s1">)</span>
+            <span class="s1">start = time.time()</span>
+            <span class="s1">classifier.train(trainingData</span><span class="s2">, </span><span class="s1">trainingLabels</span><span class="s2">, </span><span class="s1">validationData</span><span class="s2">, </span><span class="s1">validationLabels)</span>
+            <span class="s1">end = time.time()</span>
+            <span class="s1">l_time.append(end - start)</span>
+            <span class="s1">print(</span><span class="s5">&quot;Validating...&quot;</span><span class="s1">)</span>
+            <span class="s1">guesses = classifier.classify(validationData)</span>
+            <span class="s1">correct = [guesses[i] == validationLabels[i] </span><span class="s2">for </span><span class="s1">i </span><span class="s2">in </span><span class="s1">range(len(validationLabels))].count(</span><span class="s2">True</span><span class="s1">)</span>
+            <span class="s1">print(str(correct)</span><span class="s2">,</span>
+                  <span class="s1">(</span><span class="s5">&quot;correct out of &quot; </span><span class="s1">+ str(len(validationLabels)) + </span><span class="s5">&quot; (%.1f%%).&quot;</span><span class="s1">) % (</span>
+                              <span class="s3">100.0 </span><span class="s1">* correct / len(validationLabels)))</span>
+            <span class="s1">print(</span><span class="s5">&quot;Testing...&quot;</span><span class="s1">)</span>
+            <span class="s1">guesses = classifier.classify(testData)</span>
+            <span class="s1">correct = [guesses[i] == testLabels[i] </span><span class="s2">for </span><span class="s1">i </span><span class="s2">in </span><span class="s1">range(len(testLabels))].count(</span><span class="s2">True</span><span class="s1">)</span>
+            <span class="s1">print(str(correct)</span><span class="s2">,</span>
+                  <span class="s1">(</span><span class="s5">&quot;correct out of &quot; </span><span class="s1">+ str(len(testLabels)) + </span><span class="s5">&quot; (%.1f%%).&quot;</span><span class="s1">) % (</span><span class="s3">100.0 </span><span class="s1">* correct / len(testLabels)))</span>
+           <span class="s0"># analysis(classifier, guesses, testLabels, testData, rawTestData, printImage)</span>
+            <span class="s1">l_test.append(correct)</span>
+
+            <span class="s0"># do odds ratio computation if specified at command line</span>
+            <span class="s2">if </span><span class="s1">((options.odds) &amp; (options.classifier != </span><span class="s5">&quot;mostFrequent&quot;</span><span class="s1">)):</span>
+                <span class="s1">label1</span><span class="s2">, </span><span class="s1">label2 = options.label1</span><span class="s2">, </span><span class="s1">options.label2</span>
+                <span class="s1">features_odds = classifier.findHighOddsFeatures(label1</span><span class="s2">, </span><span class="s1">label2)</span>
+                <span class="s2">if </span><span class="s1">(options.classifier == </span><span class="s5">&quot;naiveBayes&quot; </span><span class="s2">or </span><span class="s1">options.classifier == </span><span class="s5">&quot;nb&quot;</span><span class="s1">):</span>
+                    <span class="s1">string3 = </span><span class="s5">&quot;=== Features with highest odd ratio of label %d over label %d ===&quot; </span><span class="s1">% (label1</span><span class="s2">, </span><span class="s1">label2)</span>
+                <span class="s2">else</span><span class="s1">:</span>
+                    <span class="s1">string3 = </span><span class="s5">&quot;=== Features for which weight(label %d)-weight(label %d) is biggest ===&quot; </span><span class="s1">% (</span>
+                    <span class="s1">label1</span><span class="s2">, </span><span class="s1">label2)</span>
+
+                <span class="s1">print(string3)</span>
+                <span class="s1">printImage(features_odds)</span>
+        <span class="s1">print(</span><span class="s5">&quot;************************************************************************************************************************&quot;</span><span class="s1">)</span>
+        <span class="s1">print(</span><span class="s5">&quot;Standard Deviation of Test Accuracy with &quot; </span><span class="s1">+ str(j) + </span><span class="s5">&quot;% of Test Data is &quot; </span><span class="s1">+ str(numpy.std(l_test)))</span>
+        <span class="s1">print(</span><span class="s5">&quot;Average  of Test Accuracy with &quot; </span><span class="s1">+ str(j) + </span><span class="s5">&quot;% of Test Data is &quot; </span><span class="s1">+ str(numpy.mean(l_test)))</span>
+        <span class="s1">print(</span><span class="s5">&quot;Average  of Time taken to Train with &quot; </span><span class="s1">+ str(j) + </span><span class="s5">&quot;% of Test Data is &quot; </span><span class="s1">+ str(numpy.mean(l_time)))</span>
+        <span class="s1">print(</span><span class="s5">&quot;************************************************************************************************************************&quot;</span><span class="s1">)</span>
+        <span class="s1">run_data.update({j: [(numpy.std(l_test))</span><span class="s2">, </span><span class="s1">(numpy.mean(l_test))</span><span class="s2">, </span><span class="s1">(numpy.mean(l_time))]})</span>
+    <span class="s1">print(</span><span class="s5">&quot;Run Data for &quot;</span><span class="s1">+options.classifier+</span><span class="s5">&quot; Algorithm for detecting/classifying &quot;</span><span class="s1">+ options.data)</span>
+    <span class="s1">print(</span><span class="s5">&quot;{:&lt;20} {:&lt;20} {:&lt;20} {:20}&quot;</span><span class="s1">.format(</span><span class="s5">'|Test Data Percent|'</span><span class="s2">, </span><span class="s5">'|Std Deviation of Accuracy|'</span><span class="s2">,</span>
+                                               <span class="s5">'|Average of Accuracy|'</span><span class="s2">, </span><span class="s5">'|Average Time to Train|'</span><span class="s1">))</span>
+
+    <span class="s0"># print each data item.</span>
+    <span class="s1">sdl=list()</span>
+    <span class="s1">meanl=list()</span>
+    <span class="s1">tl=list()</span>
+    <span class="s2">for </span><span class="s1">key</span><span class="s2">, </span><span class="s1">value </span><span class="s2">in </span><span class="s1">run_data.items():</span>
+        <span class="s1">sd</span><span class="s2">, </span><span class="s1">mean</span><span class="s2">, </span><span class="s1">t = value</span>
+        <span class="s1">print(</span><span class="s5">&quot;{:&lt;20} {:&lt;30} {:&lt;20} {:&lt;20}&quot;</span><span class="s1">.format(key</span><span class="s2">, </span><span class="s1">sd</span><span class="s2">, </span><span class="s1">mean</span><span class="s2">, </span><span class="s1">t))</span>
+        <span class="s1">sdl.append(sd)</span>
+        <span class="s1">meanl.append(mean)</span>
+        <span class="s1">tl.append(t)</span>
+
+  <span class="s0">#  plt.plot(sd,mean,t)</span>
+
+
+
+<span class="s2">if </span><span class="s1">__name__ == </span><span class="s5">'__main__'</span><span class="s1">:</span>
+    <span class="s0"># Read input</span>
+    <span class="s1">args</span><span class="s2">, </span><span class="s1">options = readCommand(sys.argv[</span><span class="s3">1</span><span class="s1">:])</span>
+    <span class="s0"># Run classifier</span>
+    <span class="s1">runClassifier(args</span><span class="s2">, </span><span class="s1">options)</span>
+</pre>
+</body>
+</html>

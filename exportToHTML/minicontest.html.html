@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>minicontest.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #e8bf6a;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #bababa;}
+.s3 { color: #a5c261;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+minicontest.html</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;html&gt;</span>
+  <span class="s0">&lt;head&gt;</span>
+  <span class="s0">&lt;title&gt;</span><span class="s1">minicontest.py</span><span class="s0">&lt;/title&gt;</span>
+  <span class="s0">&lt;/head&gt;</span>
+  <span class="s0">&lt;body&gt;</span>
+  <span class="s0">&lt;h3&gt;</span><span class="s1">minicontest.py (</span><span class="s0">&lt;a </span><span class="s2">href</span><span class="s3">=&quot;../minicontest.py&quot;</span><span class="s0">&gt;</span><span class="s1">original</span><span class="s0">&lt;/a&gt;</span><span class="s1">)</span><span class="s0">&lt;/h3&gt;</span>
+  <span class="s0">&lt;hr&gt;</span>
+  <span class="s0">&lt;pre&gt;</span>
+<span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: blue; font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">import </span><span class="s0">&lt;/span&gt;</span><span class="s1">util</span>
+<span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: blue; font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">import </span><span class="s0">&lt;/span&gt;</span><span class="s1">classificationMethod</span>
+
+<span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: blue; font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">class </span><span class="s0">&lt;/span&gt;</span><span class="s1">contestClassifier</span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">(</span><span class="s0">&lt;/span&gt;</span><span class="s1">classificationMethod</span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">.</span><span class="s0">&lt;/span&gt;</span><span class="s1">ClassificationMethod</span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">):</span>
+  <span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: darkred&quot;</span><span class="s0">&gt;</span><span class="s1">&quot;&quot;&quot;</span>
+  <span class="s1">Create any sort of classifier you want. You might copy over one of your</span>
+  <span class="s1">existing classifiers and improve it.</span>
+  <span class="s1">&quot;&quot;&quot;</span>
+  <span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: blue; font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">def </span><span class="s0">&lt;/span&gt;</span><span class="s1">__init__</span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">(</span><span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: blue&quot;</span><span class="s0">&gt;</span><span class="s1">self</span><span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">, </span><span class="s0">&lt;/span&gt;</span><span class="s1">legalLabels</span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">):</span>
+    <span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: blue&quot;</span><span class="s0">&gt;</span><span class="s1">self</span><span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">.</span><span class="s0">&lt;/span&gt;</span><span class="s1">guess </span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">= </span><span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: blue&quot;</span><span class="s0">&gt;</span><span class="s1">None</span>
+    <span class="s1">self</span><span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">.</span><span class="s0">&lt;/span&gt;</span><span class="s1">type </span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">= </span><span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: red&quot;</span><span class="s0">&gt;</span><span class="s1">&quot;minicontest&quot;</span>
+  
+  <span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: blue; font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">def </span><span class="s0">&lt;/span&gt;</span><span class="s1">train</span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">(</span><span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: blue&quot;</span><span class="s0">&gt;</span><span class="s1">self</span><span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">, </span><span class="s0">&lt;/span&gt;</span><span class="s1">data</span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">, </span><span class="s0">&lt;/span&gt;</span><span class="s1">labels</span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">, </span><span class="s0">&lt;/span&gt;</span><span class="s1">validationData</span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">, </span><span class="s0">&lt;/span&gt;</span><span class="s1">validationLabels</span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">):</span>
+    <span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: darkred&quot;</span><span class="s0">&gt;</span><span class="s1">&quot;&quot;&quot;</span>
+    <span class="s1">Please describe your training procedure here.</span>
+    <span class="s1">&quot;&quot;&quot;</span>
+    <span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: blue; font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">raise </span><span class="s0">&lt;/span&gt;</span><span class="s1">Exception</span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">(</span><span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: red&quot;</span><span class="s0">&gt;</span><span class="s1">'not implemented'</span><span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">)</span>
+  
+  <span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: blue; font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">def </span><span class="s0">&lt;/span&gt;</span><span class="s1">classify</span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">(</span><span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: blue&quot;</span><span class="s0">&gt;</span><span class="s1">self</span><span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">, </span><span class="s0">&lt;/span&gt;</span><span class="s1">testData</span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">):</span>
+    <span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: darkred&quot;</span><span class="s0">&gt;</span><span class="s1">&quot;&quot;&quot;</span>
+    <span class="s1">Please describe how data is classified here.</span>
+    <span class="s1">&quot;&quot;&quot;</span>
+    <span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: blue; font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">raise </span><span class="s0">&lt;/span&gt;</span><span class="s1">Exception</span><span class="s0">&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">(</span><span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;color: red&quot;</span><span class="s0">&gt;</span><span class="s1">'not implemented'</span><span class="s0">&lt;/span&gt;&lt;span </span><span class="s2">style</span><span class="s3">=&quot;font-weight: bold&quot;</span><span class="s0">&gt;</span><span class="s1">)</span>
+<span class="s0">&lt;/span&gt;</span>
+  <span class="s0">&lt;/pre&gt;</span>
+  <span class="s0">&lt;/body&gt;</span>
+  <span class="s0">&lt;/html&gt;</span>
+  </pre>
+</body>
+</html>

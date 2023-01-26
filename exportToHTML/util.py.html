@@ -1,0 +1,513 @@
+<html>
+<head>
+<title>util.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #629755; font-style: italic;}
+.s4 { color: #6897bb;}
+.s5 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+util.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">sys</span>
+<span class="s0">import </span><span class="s1">inspect</span>
+<span class="s0">import </span><span class="s1">heapq</span><span class="s0">, </span><span class="s1">random</span>
+
+
+<span class="s2">&quot;&quot;&quot; 
+ Data structures useful for implementing SearchAgents 
+&quot;&quot;&quot;</span>
+
+<span class="s0">class </span><span class="s1">Stack:</span>
+  <span class="s3">&quot;A container with a last-in-first-out (LIFO) queuing policy.&quot;</span>
+  <span class="s0">def </span><span class="s1">__init__(self):</span>
+    <span class="s1">self.list = []</span>
+    
+  <span class="s0">def </span><span class="s1">push(self</span><span class="s0">,</span><span class="s1">item):</span>
+    <span class="s3">&quot;Push 'item' onto the stack&quot;</span>
+    <span class="s1">self.list.append(item)</span>
+
+  <span class="s0">def </span><span class="s1">pop(self):</span>
+    <span class="s3">&quot;Pop the most recently pushed item from the stack&quot;</span>
+    <span class="s0">return </span><span class="s1">self.list.pop()</span>
+
+  <span class="s0">def </span><span class="s1">isEmpty(self):</span>
+    <span class="s3">&quot;Returns true if the stack is empty&quot;</span>
+    <span class="s0">return </span><span class="s1">len(self.list) == </span><span class="s4">0</span>
+
+<span class="s0">class </span><span class="s1">Queue:</span>
+  <span class="s3">&quot;A container with a first-in-first-out (FIFO) queuing policy.&quot;</span>
+  <span class="s0">def </span><span class="s1">__init__(self):</span>
+    <span class="s1">self.list = []</span>
+  
+  <span class="s0">def </span><span class="s1">push(self</span><span class="s0">,</span><span class="s1">item):</span>
+    <span class="s3">&quot;Enqueue the 'item' into the queue&quot;</span>
+    <span class="s1">self.list.insert(</span><span class="s4">0</span><span class="s0">,</span><span class="s1">item)</span>
+
+  <span class="s0">def </span><span class="s1">pop(self):</span>
+    <span class="s3">&quot;&quot;&quot; 
+      Dequeue the earliest enqueued item still in the queue. This 
+      operation removes the item from the queue. 
+    &quot;&quot;&quot;</span>
+    <span class="s0">return </span><span class="s1">self.list.pop()</span>
+
+  <span class="s0">def </span><span class="s1">isEmpty(self):</span>
+    <span class="s3">&quot;Returns true if the queue is empty&quot;</span>
+    <span class="s0">return </span><span class="s1">len(self.list) == </span><span class="s4">0</span>
+  
+<span class="s0">class </span><span class="s1">PriorityQueue:</span>
+  <span class="s3">&quot;&quot;&quot; 
+    Implements a priority queue data structure. Each inserted item 
+    has a priority associated with it and the client is usually interested 
+    in quick retrieval of the lowest-priority item in the queue. This 
+    data structure allows O(1) access to the lowest-priority item. 
+     
+    Note that this PriorityQueue does not allow you to change the priority 
+    of an item.  However, you may insert the same item multiple times with 
+    different priorities. 
+  &quot;&quot;&quot;  </span>
+  <span class="s0">def  </span><span class="s1">__init__(self):  </span>
+    <span class="s1">self.heap = []</span>
+    
+  <span class="s0">def </span><span class="s1">push(self</span><span class="s0">, </span><span class="s1">item</span><span class="s0">, </span><span class="s1">priority):</span>
+      <span class="s1">pair = (priority</span><span class="s0">,</span><span class="s1">item)</span>
+      <span class="s1">heapq.heappush(self.heap</span><span class="s0">,</span><span class="s1">pair)</span>
+
+  <span class="s0">def </span><span class="s1">pop(self):</span>
+      <span class="s1">(priority</span><span class="s0">,</span><span class="s1">item) = heapq.heappop(self.heap)</span>
+      <span class="s0">return </span><span class="s1">item</span>
+  
+  <span class="s0">def </span><span class="s1">isEmpty(self):</span>
+    <span class="s0">return </span><span class="s1">len(self.heap) == </span><span class="s4">0</span>
+
+<span class="s0">class </span><span class="s1">PriorityQueueWithFunction(PriorityQueue):</span>
+  <span class="s3">&quot;&quot;&quot; 
+  Implements a priority queue with the same push/pop signature of the 
+  Queue and the Stack classes. This is designed for drop-in replacement for 
+  those two classes. The caller has to provide a priority function, which 
+  extracts each item's priority. 
+  &quot;&quot;&quot;  </span>
+  <span class="s0">def  </span><span class="s1">__init__(self</span><span class="s0">, </span><span class="s1">priorityFunction):</span>
+    <span class="s3">&quot;priorityFunction (item) -&gt; priority&quot;</span>
+    <span class="s1">self.priorityFunction = priorityFunction      </span><span class="s5"># store the priority function</span>
+    <span class="s1">PriorityQueue.__init__(self)        </span><span class="s5"># super-class initializer</span>
+    
+  <span class="s0">def </span><span class="s1">push(self</span><span class="s0">, </span><span class="s1">item):</span>
+    <span class="s3">&quot;Adds an item to the queue with priority from the priority function&quot;</span>
+    <span class="s1">PriorityQueue.push(self</span><span class="s0">, </span><span class="s1">item</span><span class="s0">, </span><span class="s1">self.priorityFunction(item))</span>
+
+    
+<span class="s0">def </span><span class="s1">manhattanDistance( xy1</span><span class="s0">, </span><span class="s1">xy2 ):</span>
+  <span class="s3">&quot;Returns the Manhattan distance between points xy1 and xy2&quot;</span>
+  <span class="s0">return </span><span class="s1">abs( xy1[</span><span class="s4">0</span><span class="s1">] - xy2[</span><span class="s4">0</span><span class="s1">] ) + abs( xy1[</span><span class="s4">1</span><span class="s1">] - xy2[</span><span class="s4">1</span><span class="s1">] )</span>
+
+<span class="s2">&quot;&quot;&quot; 
+  Data structures and functions useful for various course projects 
+   
+  The search project should not need anything below this line. 
+&quot;&quot;&quot;</span>
+
+<span class="s0">class </span><span class="s1">Counter(dict):</span>
+  <span class="s3">&quot;&quot;&quot; 
+  A counter keeps track of counts for a set of keys. 
+   
+  The counter class is an extension of the standard python 
+  dictionary type.  It is specialized to have number values   
+  (integers or floats), and includes a handful of additional 
+  functions to ease the task of counting data.  In particular,  
+  all keys are defaulted to have value 0.  Using a dictionary: 
+   
+  a = {} 
+  print a['test'] 
+   
+  would give an error, while the Counter class analogue: 
+     
+  &gt;&gt;&gt; a = Counter() 
+  &gt;&gt;&gt; print a['test'] 
+  0 
+ 
+  returns the default 0 value. Note that to reference a key  
+  that you know is contained in the counter,  
+  you can still use the dictionary syntax: 
+     
+  &gt;&gt;&gt; a = Counter() 
+  &gt;&gt;&gt; a['test'] = 2 
+  &gt;&gt;&gt; print a['test'] 
+  2 
+   
+  This is very useful for counting things without initializing their counts, 
+  see for example: 
+   
+  &gt;&gt;&gt; a['blah'] += 1 
+  &gt;&gt;&gt; print a['blah'] 
+  1 
+   
+  The counter also includes additional functionality useful in implementing 
+  the classifiers for this assignment.  Two counters can be added, 
+  subtracted or multiplied together.  See below for details.  They can 
+  also be normalized and their total count and arg max can be extracted. 
+  &quot;&quot;&quot;</span>
+  <span class="s0">def </span><span class="s1">__getitem__(self</span><span class="s0">, </span><span class="s1">idx):</span>
+    <span class="s1">self.setdefault(idx</span><span class="s0">, </span><span class="s4">0</span><span class="s1">)</span>
+    <span class="s0">return </span><span class="s1">dict.__getitem__(self</span><span class="s0">, </span><span class="s1">idx)</span>
+
+  <span class="s0">def </span><span class="s1">incrementAll(self</span><span class="s0">, </span><span class="s1">keys</span><span class="s0">, </span><span class="s1">count):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Increments all elements of keys by the same count. 
+     
+    &gt;&gt;&gt; a = Counter() 
+    &gt;&gt;&gt; a.incrementAll(['one','two', 'three'], 1) 
+    &gt;&gt;&gt; a['one'] 
+    1 
+    &gt;&gt;&gt; a['two'] 
+    1 
+    &quot;&quot;&quot;</span>
+    <span class="s0">for </span><span class="s1">key </span><span class="s0">in </span><span class="s1">keys:</span>
+      <span class="s1">self[key] += count</span>
+  
+  <span class="s0">def </span><span class="s1">argMax(self):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Returns the key with the highest value. 
+    &quot;&quot;&quot;</span>
+    <span class="s0">if </span><span class="s1">len(self.keys()) == </span><span class="s4">0</span><span class="s1">: </span><span class="s0">return None</span>
+    <span class="s1">all = list(self.items())</span>
+    <span class="s1">values = [x[</span><span class="s4">1</span><span class="s1">] </span><span class="s0">for </span><span class="s1">x </span><span class="s0">in </span><span class="s1">all]</span>
+    <span class="s1">maxIndex = values.index(max(values))</span>
+    <span class="s5">#print(all)</span>
+    <span class="s5">#print(maxIndex)</span>
+    <span class="s0">return </span><span class="s1">all[maxIndex][</span><span class="s4">0</span><span class="s1">]</span>
+  
+  <span class="s0">def </span><span class="s1">sortedKeys(self):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Returns a list of keys sorted by their values.  Keys 
+    with the highest values will appear first. 
+     
+    &gt;&gt;&gt; a = Counter() 
+    &gt;&gt;&gt; a['first'] = -2 
+    &gt;&gt;&gt; a['second'] = 4 
+    &gt;&gt;&gt; a['third'] = 1 
+    &gt;&gt;&gt; a.sortedKeys() 
+    ['second', 'third', 'first'] 
+    &quot;&quot;&quot;</span>
+    <span class="s1">sortedItems = self.items()</span>
+    <span class="s1">compare = </span><span class="s0">lambda </span><span class="s1">x</span><span class="s0">, </span><span class="s1">y:  sign(y[</span><span class="s4">1</span><span class="s1">] - x[</span><span class="s4">1</span><span class="s1">])</span>
+    <span class="s1">sortedItems.sort(cmp=compare)</span>
+    <span class="s0">return </span><span class="s1">[x[</span><span class="s4">0</span><span class="s1">] </span><span class="s0">for </span><span class="s1">x </span><span class="s0">in </span><span class="s1">sortedItems]</span>
+  
+  <span class="s0">def </span><span class="s1">totalCount(self):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Returns the sum of counts for all keys. 
+    &quot;&quot;&quot;</span>
+    <span class="s0">return </span><span class="s1">sum(self.values())</span>
+  
+  <span class="s0">def </span><span class="s1">normalize(self):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Edits the counter such that the total count of all 
+    keys sums to 1.  The ratio of counts for all keys 
+    will remain the same. Note that normalizing an empty  
+    Counter will result in an error. 
+    &quot;&quot;&quot;</span>
+    <span class="s1">total = float(self.totalCount())</span>
+    <span class="s0">if </span><span class="s1">total == </span><span class="s4">0</span><span class="s1">: </span><span class="s0">return</span>
+    <span class="s0">for </span><span class="s1">key </span><span class="s0">in </span><span class="s1">self.keys():</span>
+      <span class="s1">self[key] = self[key] / total</span>
+      
+  <span class="s0">def </span><span class="s1">divideAll(self</span><span class="s0">, </span><span class="s1">divisor):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Divides all counts by divisor 
+    &quot;&quot;&quot;</span>
+    <span class="s1">divisor = float(divisor)</span>
+    <span class="s0">for </span><span class="s1">key </span><span class="s0">in </span><span class="s1">self:</span>
+      <span class="s1">self[key] /= divisor</span>
+
+  <span class="s0">def </span><span class="s1">copy(self):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Returns a copy of the counter 
+    &quot;&quot;&quot;</span>
+    <span class="s0">return </span><span class="s1">Counter(dict.copy(self))</span>
+  
+  <span class="s0">def </span><span class="s1">__mul__(self</span><span class="s0">, </span><span class="s1">y ):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Multiplying two counters gives the dot product of their vectors where 
+    each unique label is a vector element. 
+     
+    &gt;&gt;&gt; a = Counter() 
+    &gt;&gt;&gt; b = Counter() 
+    &gt;&gt;&gt; a['first'] = -2 
+    &gt;&gt;&gt; a['second'] = 4 
+    &gt;&gt;&gt; b['first'] = 3 
+    &gt;&gt;&gt; b['second'] = 5 
+    &gt;&gt;&gt; a['third'] = 1.5 
+    &gt;&gt;&gt; a['fourth'] = 2.5 
+    &gt;&gt;&gt; a * b 
+    14 
+    &quot;&quot;&quot;</span>
+    <span class="s1">sum = </span><span class="s4">0</span>
+    <span class="s1">x = self</span>
+    <span class="s0">if </span><span class="s1">len(x) &gt; len(y):</span>
+      <span class="s1">x</span><span class="s0">,</span><span class="s1">y = y</span><span class="s0">,</span><span class="s1">x</span>
+    <span class="s0">for </span><span class="s1">key </span><span class="s0">in </span><span class="s1">x:</span>
+      <span class="s0">if </span><span class="s1">key </span><span class="s0">not in </span><span class="s1">y:</span>
+        <span class="s0">continue</span>
+      <span class="s1">sum += x[key] * y[key]      </span>
+    <span class="s0">return </span><span class="s1">sum</span>
+      
+  <span class="s0">def </span><span class="s1">__radd__(self</span><span class="s0">, </span><span class="s1">y):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Adding another counter to a counter increments the current counter 
+    by the values stored in the second counter. 
+     
+    &gt;&gt;&gt; a = Counter() 
+    &gt;&gt;&gt; b = Counter() 
+    &gt;&gt;&gt; a['first'] = -2 
+    &gt;&gt;&gt; a['second'] = 4 
+    &gt;&gt;&gt; b['first'] = 3 
+    &gt;&gt;&gt; b['third'] = 1 
+    &gt;&gt;&gt; a += b 
+    &gt;&gt;&gt; a['first'] 
+    1 
+    &quot;&quot;&quot; </span>
+    <span class="s0">for </span><span class="s1">key</span><span class="s0">, </span><span class="s1">value </span><span class="s0">in </span><span class="s1">y.items():</span>
+      <span class="s1">self[key] += value   </span>
+      
+  <span class="s0">def </span><span class="s1">__add__( self</span><span class="s0">, </span><span class="s1">y ):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Adding two counters gives a counter with the union of all keys and 
+    counts of the second added to counts of the first. 
+     
+    &gt;&gt;&gt; a = Counter() 
+    &gt;&gt;&gt; b = Counter() 
+    &gt;&gt;&gt; a['first'] = -2 
+    &gt;&gt;&gt; a['second'] = 4 
+    &gt;&gt;&gt; b['first'] = 3 
+    &gt;&gt;&gt; b['third'] = 1 
+    &gt;&gt;&gt; (a + b)['first'] 
+    1 
+    &quot;&quot;&quot;</span>
+    <span class="s1">addend = Counter()</span>
+    <span class="s0">for </span><span class="s1">key </span><span class="s0">in </span><span class="s1">self:</span>
+      <span class="s0">if </span><span class="s1">key </span><span class="s0">in </span><span class="s1">y:</span>
+        <span class="s1">addend[key] = self[key] + y[key]</span>
+      <span class="s0">else</span><span class="s1">:</span>
+        <span class="s1">addend[key] = self[key]</span>
+    <span class="s0">for </span><span class="s1">key </span><span class="s0">in </span><span class="s1">y:</span>
+      <span class="s0">if </span><span class="s1">key </span><span class="s0">in </span><span class="s1">self:</span>
+        <span class="s0">continue</span>
+      <span class="s1">addend[key] = y[key]</span>
+    <span class="s0">return </span><span class="s1">addend</span>
+    
+  <span class="s0">def </span><span class="s1">__sub__( self</span><span class="s0">, </span><span class="s1">y ):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Subtracting a counter from another gives a counter with the union of all keys and 
+    counts of the second subtracted from counts of the first. 
+     
+    &gt;&gt;&gt; a = Counter() 
+    &gt;&gt;&gt; b = Counter() 
+    &gt;&gt;&gt; a['first'] = -2 
+    &gt;&gt;&gt; a['second'] = 4 
+    &gt;&gt;&gt; b['first'] = 3 
+    &gt;&gt;&gt; b['third'] = 1 
+    &gt;&gt;&gt; (a - b)['first'] 
+    -5 
+    &quot;&quot;&quot;      </span>
+    <span class="s1">addend = Counter()</span>
+    <span class="s0">for </span><span class="s1">key </span><span class="s0">in </span><span class="s1">self:</span>
+      <span class="s0">if </span><span class="s1">key </span><span class="s0">in </span><span class="s1">y:</span>
+        <span class="s1">addend[key] = self[key] - y[key]</span>
+      <span class="s0">else</span><span class="s1">:</span>
+        <span class="s1">addend[key] = self[key]</span>
+    <span class="s0">for </span><span class="s1">key </span><span class="s0">in </span><span class="s1">y:</span>
+      <span class="s0">if </span><span class="s1">key </span><span class="s0">in </span><span class="s1">self:</span>
+        <span class="s0">continue</span>
+      <span class="s1">addend[key] = -</span><span class="s4">1 </span><span class="s1">* y[key]</span>
+    <span class="s0">return </span><span class="s1">addend</span>
+    
+<span class="s0">def </span><span class="s1">raiseNotDefined():</span>
+  <span class="s1">print (</span><span class="s2">&quot;Method not implemented: %s&quot; </span><span class="s1">% inspect.stack()[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">3</span><span class="s1">])    </span>
+  <span class="s1">sys.exit(</span><span class="s4">1</span><span class="s1">)</span>
+
+<span class="s0">def </span><span class="s1">normalize(vectorOrCounter):</span>
+  <span class="s3">&quot;&quot;&quot; 
+  normalize a vector or counter by dividing each value by the sum of all values 
+  &quot;&quot;&quot;</span>
+  <span class="s1">normalizedCounter = Counter()</span>
+  <span class="s0">if </span><span class="s1">type(vectorOrCounter) == type(normalizedCounter):</span>
+    <span class="s1">counter = vectorOrCounter</span>
+    <span class="s1">total = float(counter.totalCount())</span>
+    <span class="s0">if </span><span class="s1">total == </span><span class="s4">0</span><span class="s1">: </span><span class="s0">return </span><span class="s1">counter</span>
+    <span class="s0">for </span><span class="s1">key </span><span class="s0">in </span><span class="s1">counter.keys():</span>
+      <span class="s1">value = counter[key]</span>
+      <span class="s1">normalizedCounter[key] = value / total</span>
+    <span class="s0">return </span><span class="s1">normalizedCounter</span>
+  <span class="s0">else</span><span class="s1">:</span>
+    <span class="s1">vector = vectorOrCounter</span>
+    <span class="s1">s = float(sum(vector))</span>
+    <span class="s0">if </span><span class="s1">s == </span><span class="s4">0</span><span class="s1">: </span><span class="s0">return </span><span class="s1">vector</span>
+    <span class="s0">return </span><span class="s1">[el / s </span><span class="s0">for </span><span class="s1">el </span><span class="s0">in </span><span class="s1">vector]</span>
+                
+<span class="s0">def </span><span class="s1">nSample(distribution</span><span class="s0">, </span><span class="s1">values</span><span class="s0">, </span><span class="s1">n):</span>
+  <span class="s0">if </span><span class="s1">sum(distribution) != </span><span class="s4">1</span><span class="s1">:</span>
+    <span class="s1">distribution = normalize(distribution)</span>
+  <span class="s1">rand = [random.random() </span><span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">range(n)]</span>
+  <span class="s1">rand.sort()</span>
+  <span class="s1">samples = []</span>
+  <span class="s1">samplePos</span><span class="s0">, </span><span class="s1">distPos</span><span class="s0">, </span><span class="s1">cdf = </span><span class="s4">0</span><span class="s0">,</span><span class="s4">0</span><span class="s0">, </span><span class="s1">distribution[</span><span class="s4">0</span><span class="s1">]</span>
+  <span class="s0">while </span><span class="s1">samplePos &lt; n:</span>
+    <span class="s0">if </span><span class="s1">rand[samplePos] &lt; cdf:</span>
+      <span class="s1">samplePos += </span><span class="s4">1</span>
+      <span class="s1">samples.append(values[distPos])</span>
+    <span class="s0">else</span><span class="s1">:</span>
+      <span class="s1">distPos += </span><span class="s4">1</span>
+      <span class="s1">cdf += distribution[distPos]</span>
+  <span class="s0">return </span><span class="s1">samples</span>
+    
+<span class="s0">def </span><span class="s1">sample(distribution</span><span class="s0">, </span><span class="s1">values = </span><span class="s0">None</span><span class="s1">):</span>
+  <span class="s0">if </span><span class="s1">type(distribution) == Counter: </span>
+    <span class="s1">items = distribution.items()</span>
+    <span class="s1">distribution = [i[</span><span class="s4">1</span><span class="s1">] </span><span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">items] </span>
+    <span class="s1">values = [i[</span><span class="s4">0</span><span class="s1">] </span><span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">items] </span>
+  <span class="s0">if </span><span class="s1">sum(distribution) != </span><span class="s4">1</span><span class="s1">:</span>
+    <span class="s1">distribution = normalize(distribution)</span>
+  <span class="s1">choice = random.random()</span>
+  <span class="s1">i</span><span class="s0">, </span><span class="s1">total= </span><span class="s4">0</span><span class="s0">, </span><span class="s1">distribution[</span><span class="s4">0</span><span class="s1">]</span>
+  <span class="s0">while </span><span class="s1">choice &gt; total:</span>
+    <span class="s1">i += </span><span class="s4">1</span>
+    <span class="s1">total += distribution[i]</span>
+  <span class="s0">return </span><span class="s1">values[i]</span>
+
+<span class="s0">def </span><span class="s1">sampleFromCounter(ctr):</span>
+  <span class="s1">items = ctr.items()</span>
+  <span class="s0">return </span><span class="s1">sample([v </span><span class="s0">for </span><span class="s1">k</span><span class="s0">,</span><span class="s1">v </span><span class="s0">in </span><span class="s1">items]</span><span class="s0">, </span><span class="s1">[k </span><span class="s0">for </span><span class="s1">k</span><span class="s0">,</span><span class="s1">v </span><span class="s0">in </span><span class="s1">items])</span>
+
+<span class="s0">def </span><span class="s1">getProbability(value</span><span class="s0">, </span><span class="s1">distribution</span><span class="s0">, </span><span class="s1">values):</span>
+  <span class="s3">&quot;&quot;&quot; 
+    Gives the probability of a value under a discrete distribution 
+    defined by (distributions, values). 
+  &quot;&quot;&quot;</span>
+  <span class="s1">total = </span><span class="s4">0.0</span>
+  <span class="s0">for </span><span class="s1">prob</span><span class="s0">, </span><span class="s1">val </span><span class="s0">in </span><span class="s1">zip(distribution</span><span class="s0">, </span><span class="s1">values):</span>
+    <span class="s0">if </span><span class="s1">val == value:</span>
+      <span class="s1">total += prob</span>
+  <span class="s0">return </span><span class="s1">total</span>
+
+<span class="s0">def </span><span class="s1">flipCoin( p ):</span>
+  <span class="s1">r = random.random()</span>
+  <span class="s0">return </span><span class="s1">r &lt; p </span>
+
+<span class="s0">def </span><span class="s1">chooseFromDistribution( distribution ):</span>
+  <span class="s3">&quot;Takes either a counter or a list of (prob, key) pairs and samples&quot;</span>
+  <span class="s0">if </span><span class="s1">type(distribution) == dict </span><span class="s0">or </span><span class="s1">type(distribution) == Counter:</span>
+    <span class="s0">return </span><span class="s1">sample(distribution)</span>
+  <span class="s1">r = random.random()</span>
+  <span class="s1">base = </span><span class="s4">0.0</span>
+  <span class="s0">for </span><span class="s1">prob</span><span class="s0">, </span><span class="s1">element </span><span class="s0">in </span><span class="s1">distribution:</span>
+    <span class="s1">base += prob</span>
+    <span class="s0">if </span><span class="s1">r &lt;= base: </span><span class="s0">return </span><span class="s1">element</span>
+    
+<span class="s0">def </span><span class="s1">nearestPoint( pos ):</span>
+  <span class="s3">&quot;&quot;&quot; 
+  Finds the nearest grid point to a position (discretizes). 
+  &quot;&quot;&quot;</span>
+  <span class="s1">( current_row</span><span class="s0">, </span><span class="s1">current_col ) = pos</span>
+
+  <span class="s1">grid_row = int( current_row + </span><span class="s4">0.5 </span><span class="s1">) </span>
+  <span class="s1">grid_col = int( current_col + </span><span class="s4">0.5 </span><span class="s1">) </span>
+  <span class="s0">return </span><span class="s1">( grid_row</span><span class="s0">, </span><span class="s1">grid_col )     </span>
+
+<span class="s0">def </span><span class="s1">sign( x ):</span>
+  <span class="s3">&quot;&quot;&quot; 
+  Returns 1 or -1 depending on the sign of x 
+  &quot;&quot;&quot;</span>
+  <span class="s0">if</span><span class="s1">( x &gt;= </span><span class="s4">0 </span><span class="s1">):</span>
+    <span class="s0">return </span><span class="s4">1</span>
+  <span class="s0">else</span><span class="s1">:</span>
+    <span class="s0">return </span><span class="s1">-</span><span class="s4">1</span>
+
+<span class="s0">def </span><span class="s1">arrayInvert(array):</span>
+  <span class="s3">&quot;&quot;&quot; 
+  Inverts a matrix stored as a list of lists. 
+  &quot;&quot;&quot;</span>
+  <span class="s5">#print(len(array))</span>
+  <span class="s1">result = [[] </span><span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">array]</span>
+  <span class="s0">for </span><span class="s1">outer </span><span class="s0">in </span><span class="s1">array:</span>
+    <span class="s0">for </span><span class="s1">inner </span><span class="s0">in </span><span class="s1">range(len(outer)):</span>
+      <span class="s1">result[inner].append(outer[inner])</span>
+  <span class="s5">#print(outer[inner])</span>
+  <span class="s0">return </span><span class="s1">result</span>
+
+<span class="s0">def </span><span class="s1">matrixAsList( matrix</span><span class="s0">, </span><span class="s1">value = </span><span class="s0">True </span><span class="s1">):</span>
+  <span class="s3">&quot;&quot;&quot; 
+  Turns a matrix into a list of coordinates matching the specified value 
+  &quot;&quot;&quot;</span>
+  <span class="s1">rows</span><span class="s0">, </span><span class="s1">cols = len( matrix )</span><span class="s0">, </span><span class="s1">len( matrix[</span><span class="s4">0</span><span class="s1">] )</span>
+  <span class="s1">cells = []</span>
+  <span class="s0">for </span><span class="s1">row </span><span class="s0">in </span><span class="s1">range( rows ):</span>
+    <span class="s0">for </span><span class="s1">col </span><span class="s0">in </span><span class="s1">range( cols ):</span>
+      <span class="s0">if </span><span class="s1">matrix[row][col] == value:</span>
+        <span class="s1">cells.append( ( row</span><span class="s0">, </span><span class="s1">col ) )</span>
+  <span class="s0">return </span><span class="s1">cells</span>
+
+<span class="s0">def </span><span class="s1">lookup(name</span><span class="s0">, </span><span class="s1">namespace):</span>
+  <span class="s3">&quot;&quot;&quot; 
+  Get a method or class from any imported module from its name. 
+  Usage: lookup(functionName, globals()) 
+  &quot;&quot;&quot;</span>
+  <span class="s1">dots = name.count(</span><span class="s2">'.'</span><span class="s1">)</span>
+  <span class="s0">if </span><span class="s1">dots &gt; </span><span class="s4">0</span><span class="s1">:</span>
+    <span class="s1">moduleName</span><span class="s0">, </span><span class="s1">objName = </span><span class="s2">'.'</span><span class="s1">.join(name.split(</span><span class="s2">'.'</span><span class="s1">)[:-</span><span class="s4">1</span><span class="s1">])</span><span class="s0">, </span><span class="s1">name.split(</span><span class="s2">'.'</span><span class="s1">)[-</span><span class="s4">1</span><span class="s1">]</span>
+    <span class="s1">module = __import__(moduleName)</span>
+    <span class="s0">return </span><span class="s1">getattr(module</span><span class="s0">, </span><span class="s1">objName)</span>
+  <span class="s0">else</span><span class="s1">:</span>
+    <span class="s1">modules = [obj </span><span class="s0">for </span><span class="s1">obj </span><span class="s0">in </span><span class="s1">namespace.values() </span><span class="s0">if </span><span class="s1">str(type(obj)) == </span><span class="s2">&quot;&lt;type 'module'&gt;&quot;</span><span class="s1">]</span>
+    <span class="s1">options = [getattr(module</span><span class="s0">, </span><span class="s1">name) </span><span class="s0">for </span><span class="s1">module </span><span class="s0">in </span><span class="s1">modules </span><span class="s0">if </span><span class="s1">name </span><span class="s0">in </span><span class="s1">dir(module)]</span>
+    <span class="s1">options += [obj[</span><span class="s4">1</span><span class="s1">] </span><span class="s0">for </span><span class="s1">obj </span><span class="s0">in </span><span class="s1">namespace.items() </span><span class="s0">if </span><span class="s1">obj[</span><span class="s4">0</span><span class="s1">] == name ]</span>
+    <span class="s0">if </span><span class="s1">len(options) == </span><span class="s4">1</span><span class="s1">: </span><span class="s0">return </span><span class="s1">options[</span><span class="s4">0</span><span class="s1">]</span>
+    <span class="s0">if </span><span class="s1">len(options) &gt; </span><span class="s4">1</span><span class="s1">: </span><span class="s0">raise </span><span class="s1">(Exception</span><span class="s0">, </span><span class="s2">'Name conflict for %s'</span><span class="s1">)</span>
+    <span class="s0">raise </span><span class="s1">(Exception</span><span class="s0">, </span><span class="s2">'%s not found as a method or class' </span><span class="s1">% name)</span>
+
+<span class="s0">def </span><span class="s1">pause():</span>
+  <span class="s3">&quot;&quot;&quot; 
+  Pauses the output stream awaiting user feedback. 
+  &quot;&quot;&quot;</span>
+  <span class="s1">print (</span><span class="s2">&quot;&lt;Press enter/return to continue&gt;&quot;</span><span class="s1">)</span>
+  <span class="s1">raw_input()</span>
+  
+  
+<span class="s5">## code to handle timeouts</span>
+<span class="s0">import </span><span class="s1">signal</span>
+<span class="s0">class </span><span class="s1">TimeoutFunctionException(Exception):</span>
+    <span class="s3">&quot;&quot;&quot;Exception to raise on a timeout&quot;&quot;&quot;</span>
+    <span class="s0">pass</span>
+
+<span class="s0">class </span><span class="s1">TimeoutFunction:</span>
+
+    <span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">, </span><span class="s1">function</span><span class="s0">, </span><span class="s1">timeout):</span>
+        <span class="s3">&quot;timeout must be at least 1 second. WHY??&quot;</span>
+        <span class="s1">self.timeout = timeout</span>
+        <span class="s1">self.function = function</span>
+
+    <span class="s0">def </span><span class="s1">handle_timeout(self</span><span class="s0">, </span><span class="s1">signum</span><span class="s0">, </span><span class="s1">frame):</span>
+        <span class="s0">raise </span><span class="s1">TimeoutFunctionException()</span>
+
+    <span class="s0">def </span><span class="s1">__call__(self</span><span class="s0">, </span><span class="s1">*args):</span>
+        <span class="s0">if not </span><span class="s2">'SIGALRM' </span><span class="s0">in </span><span class="s1">dir(signal):</span>
+            <span class="s0">return </span><span class="s1">self.function(*args)</span>
+        <span class="s1">old = signal.signal(signal.SIGALRM</span><span class="s0">, </span><span class="s1">self.handle_timeout)</span>
+        <span class="s1">signal.alarm(self.timeout)</span>
+        <span class="s0">try</span><span class="s1">:</span>
+            <span class="s1">result = self.function(*args)</span>
+        <span class="s0">finally</span><span class="s1">:</span>
+            <span class="s1">signal.signal(signal.SIGALRM</span><span class="s0">, </span><span class="s1">old)</span>
+        <span class="s1">signal.alarm(</span><span class="s4">0</span><span class="s1">)</span>
+        <span class="s0">return </span><span class="s1">result</span>
+</pre>
+</body>
+</html>

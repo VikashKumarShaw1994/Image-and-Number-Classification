@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>mira.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #cc7832;}
+.s3 { color: #629755; font-style: italic;}
+.s4 { color: #6a8759;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+mira.py</font>
+</center></td></tr></table>
+<pre><span class="s0"># Mira implementation</span>
+<span class="s2">import </span><span class="s1">util</span>
+<span class="s1">PRINT = </span><span class="s2">True</span>
+
+<span class="s2">class </span><span class="s1">MiraClassifier:</span>
+  <span class="s3">&quot;&quot;&quot; 
+  Mira classifier. 
+   
+  Note that the variable 'datum' in this code refers to a counter of features 
+  (not to a raw samples.Datum). 
+  &quot;&quot;&quot;</span>
+  <span class="s2">def </span><span class="s1">__init__( self</span><span class="s2">, </span><span class="s1">legalLabels</span><span class="s2">, </span><span class="s1">max_iterations):</span>
+    <span class="s1">self.legalLabels = legalLabels</span>
+    <span class="s1">self.type = </span><span class="s4">&quot;mira&quot;</span>
+    <span class="s1">self.automaticTuning = </span><span class="s2">False </span>
+    <span class="s1">self.C = </span><span class="s5">0.001</span>
+    <span class="s1">self.legalLabels = legalLabels</span>
+    <span class="s1">self.max_iterations = max_iterations</span>
+    <span class="s1">self.initializeWeightsToZero()</span>
+
+  <span class="s2">def </span><span class="s1">initializeWeightsToZero(self):</span>
+    <span class="s3">&quot;Resets the weights of each label to zero vectors&quot; </span>
+    <span class="s1">self.weights = {}</span>
+    <span class="s2">for </span><span class="s1">label </span><span class="s2">in </span><span class="s1">self.legalLabels:</span>
+      <span class="s1">self.weights[label] = util.Counter() </span><span class="s0"># this is the data-structure you should use</span>
+  
+  <span class="s2">def </span><span class="s1">train(self</span><span class="s2">, </span><span class="s1">trainingData</span><span class="s2">, </span><span class="s1">trainingLabels</span><span class="s2">, </span><span class="s1">validationData</span><span class="s2">, </span><span class="s1">validationLabels):</span>
+    <span class="s3">&quot;Outside shell to call your method. Do not modify this method.&quot;  </span>
+      
+    <span class="s1">self.features = trainingData[</span><span class="s5">0</span><span class="s1">].keys() </span><span class="s0"># this could be useful for your code later...</span>
+    
+    <span class="s2">if </span><span class="s1">(self.automaticTuning):</span>
+        <span class="s1">Cgrid = [</span><span class="s5">0.002</span><span class="s2">, </span><span class="s5">0.004</span><span class="s2">, </span><span class="s5">0.008</span><span class="s1">]</span>
+    <span class="s2">else</span><span class="s1">:</span>
+        <span class="s1">Cgrid = [self.C]</span>
+        
+    <span class="s2">return </span><span class="s1">self.trainAndTune(trainingData</span><span class="s2">, </span><span class="s1">trainingLabels</span><span class="s2">, </span><span class="s1">validationData</span><span class="s2">, </span><span class="s1">validationLabels</span><span class="s2">, </span><span class="s1">Cgrid)</span>
+
+  <span class="s2">def </span><span class="s1">trainAndTune(self</span><span class="s2">, </span><span class="s1">trainingData</span><span class="s2">, </span><span class="s1">trainingLabels</span><span class="s2">, </span><span class="s1">validationData</span><span class="s2">, </span><span class="s1">validationLabels</span><span class="s2">, </span><span class="s1">Cgrid):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    This method sets self.weights using MIRA.  Train the classifier for each value of C in Cgrid,  
+    then store the weights that give the best accuracy on the validationData. 
+     
+    Use the provided self.weights[label] data structure so that  
+    the classify method works correctly. Also, recall that a 
+    datum is a counter from features to values for those features 
+    representing a vector of values. 
+    &quot;&quot;&quot;</span>
+    <span class="s4">&quot;*** YOUR CODE HERE ***&quot;</span>
+    <span class="s1">util.raiseNotDefined()</span>
+
+  <span class="s2">def </span><span class="s1">classify(self</span><span class="s2">, </span><span class="s1">data ):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Classifies each datum as the label that most closely matches the prototype vector 
+    for that label.  See the project description for details. 
+     
+    Recall that a datum is a util.counter...  
+    &quot;&quot;&quot;</span>
+    <span class="s1">guesses = []</span>
+    <span class="s2">for </span><span class="s1">datum </span><span class="s2">in </span><span class="s1">data:</span>
+      <span class="s1">vectors = util.Counter()</span>
+      <span class="s2">for </span><span class="s1">l </span><span class="s2">in </span><span class="s1">self.legalLabels:</span>
+        <span class="s1">vectors[l] = self.weights[l] * datum</span>
+      <span class="s1">guesses.append(vectors.argMax())</span>
+    <span class="s2">return </span><span class="s1">guesses</span>
+
+  
+  <span class="s2">def </span><span class="s1">findHighOddsFeatures(self</span><span class="s2">, </span><span class="s1">label1</span><span class="s2">, </span><span class="s1">label2):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Returns a list of the 100 features with the greatest difference in feature values 
+                     w_label1 - w_label2 
+ 
+    &quot;&quot;&quot;</span>
+    <span class="s1">featuresOdds = []</span>
+
+    <span class="s4">&quot;*** YOUR CODE HERE ***&quot;</span>
+
+    <span class="s2">return </span><span class="s1">featuresOdds</span>
+
+</pre>
+</body>
+</html>

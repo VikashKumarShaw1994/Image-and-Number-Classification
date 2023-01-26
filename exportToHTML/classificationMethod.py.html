@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>classificationMethod.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #cc7832;}
+.s3 { color: #629755; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+classificationMethod.py</font>
+</center></td></tr></table>
+<pre><span class="s0"># This file contains the abstract class ClassificationMethod</span>
+
+<span class="s2">class </span><span class="s1">ClassificationMethod:</span>
+  <span class="s3">&quot;&quot;&quot; 
+  ClassificationMethod is the abstract superclass of  
+   - MostFrequentClassifier 
+   - NaiveBayesClassifier 
+   - PerceptronClassifier 
+   - MiraClassifier 
+  
+  As such, you need not add any code to this file.  You can write 
+  all of your implementation code in the files for the individual 
+  classification methods listed above. 
+  &quot;&quot;&quot;</span>
+  <span class="s2">def </span><span class="s1">__init__(self</span><span class="s2">, </span><span class="s1">legalLabels):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    For digits dataset, the set of legal labels will be 0,1,..,9 
+    For faces dataset, the set of legal labels will be 0 (non-face) or 1 (face) 
+    &quot;&quot;&quot;</span>
+    <span class="s1">self.legalLabels = legalLabels</span>
+    
+    
+  <span class="s2">def </span><span class="s1">train(self</span><span class="s2">, </span><span class="s1">trainingData</span><span class="s2">, </span><span class="s1">trainingLabels</span><span class="s2">, </span><span class="s1">validationData</span><span class="s2">, </span><span class="s1">validationLabels):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    This is the supervised training function for the classifier.  Two sets of  
+    labeled data are passed in: a large training set and a small validation set. 
+     
+    Many types of classifiers have a common training structure in practice: using 
+    training data for the main supervised training loop but tuning certain parameters 
+    with a small held-out validation set. 
+ 
+    For some classifiers (naive Bayes, MIRA), you will need to return the parameters'  
+    values after traning and tuning step. 
+     
+    To make the classifier generic to multiple problems, the data should be represented 
+    as lists of Counters containing feature descriptions and their counts. 
+    &quot;&quot;&quot;</span>
+    <span class="s1">abstract</span>
+    
+  <span class="s2">def </span><span class="s1">classify(self</span><span class="s2">, </span><span class="s1">data):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    This function returns a list of labels, each drawn from the set of legal labels 
+    provided to the classifier upon construction. 
+ 
+    To make the classifier generic to multiple problems, the data should be represented 
+    as lists of Counters containing feature descriptions and their counts. 
+    &quot;&quot;&quot;</span>
+    <span class="s1">abstract</span>
+
+</pre>
+</body>
+</html>

@@ -1,0 +1,742 @@
+<html>
+<head>
+<title>classification.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #e8bf6a;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #bababa;}
+.s3 { color: #a5c261;}
+.s4 { color: #6d9cbe;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+classification.html</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;!DOCTYPE </span><span class="s2">HTML </span><span class="s0">PUBLIC </span><span class="s3">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;html&gt;&lt;head&gt;</span>
+<span class="s0">&lt;meta </span><span class="s2">http-equiv</span><span class="s3">=&quot;Content-Type&quot; </span><span class="s2">content</span><span class="s3">=&quot;text/html; charset=iso-8859-1&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;meta </span><span class="s2">name</span><span class="s3">=&quot;GENERATOR&quot; </span><span class="s2">content</span><span class="s3">=&quot;Microsoft FrontPage 4.0&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;meta </span><span class="s2">name</span><span class="s3">=&quot;ProgId&quot; </span><span class="s2">content</span><span class="s3">=&quot;FrontPage.Editor.Document&quot;</span><span class="s0">&gt;&lt;title&gt;</span><span class="s1">Project 5: Classification</span><span class="s0">&lt;/title&gt;</span>
+
+<span class="s0">&lt;link </span><span class="s2">href</span><span class="s3">=&quot;projects.css&quot; </span><span class="s2">rel</span><span class="s3">=&quot;stylesheet&quot; </span><span class="s2">type</span><span class="s3">=&quot;text/css&quot;</span><span class="s0">&gt;&lt;/head&gt;</span>
+
+<span class="s0">&lt;body&gt;</span>
+<span class="s0">&lt;h2&gt;</span><span class="s1">Project 5: Classification</span><span class="s0">&lt;/h2&gt;</span>
+<span class="s0">&lt;table </span><span class="s2">border</span><span class="s3">=&quot;0&quot; </span><span class="s2">cellpadding</span><span class="s3">=&quot;10&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;tr&gt;</span>
+<span class="s0">&lt;td </span><span class="s2">align</span><span class="s3">=center</span><span class="s0">&gt;</span>
+  <span class="s0">&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/img2.gif&quot;</span><span class="s0">&gt; &lt;br&gt;</span>
+  <span class="s1">Which Digit?</span>
+<span class="s0">&lt;/td&gt;</span>
+<span class="s0">&lt;td&gt;&lt;/td&gt;</span>
+<span class="s0">&lt;td </span><span class="s2">align</span><span class="s3">=center</span><span class="s0">&gt;</span>
+  <span class="s0">&lt;table </span><span class="s2">border</span><span class="s3">=&quot;0&quot; </span><span class="s2">cellpadding</span><span class="s3">=&quot;4&quot;</span><span class="s0">&gt;</span>
+  <span class="s0">&lt;tbody&gt;&lt;tr&gt;</span>
+    <span class="s0">&lt;tr&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/i1.jpg&quot; </span><span class="s2">width</span><span class="s3">=60</span><span class="s0">&gt;&lt;/td&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/image_0056.jpg&quot; </span><span class="s2">width</span><span class="s3">=60</span><span class="s0">&gt;&lt;/td&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/i2.jpg&quot; </span><span class="s2">width</span><span class="s3">=60</span><span class="s0">&gt;&lt;/td&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/image_0067.jpg&quot; </span><span class="s2">width</span><span class="s3">=60</span><span class="s0">&gt;&lt;/td&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/image_0332.jpg&quot; </span><span class="s2">width</span><span class="s3">=60</span><span class="s0">&gt;&lt;/td&gt;</span>
+    <span class="s0">&lt;/tr&gt;</span>
+    <span class="s0">&lt;tr&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/image_0128.jpg&quot; </span><span class="s2">width</span><span class="s3">=60</span><span class="s0">&gt;&lt;/td&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/i3.jpg&quot; </span><span class="s2">width</span><span class="s3">=60</span><span class="s0">&gt;&lt;/td&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/image_0193.jpg&quot; </span><span class="s2">width</span><span class="s3">=60</span><span class="s0">&gt;&lt;/td&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/i4.jpg&quot; </span><span class="s2">width</span><span class="s3">=60</span><span class="s0">&gt;&lt;/td&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/i5.jpg&quot; </span><span class="s2">width</span><span class="s3">=60</span><span class="s0">&gt;&lt;/td&gt;</span>
+    <span class="s0">&lt;/tr&gt;</span>
+    <span class="s0">&lt;tr&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/i6.jpg&quot; </span><span class="s2">width</span><span class="s3">=60</span><span class="s0">&gt;&lt;/td&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/i7.jpg&quot; </span><span class="s2">width</span><span class="s3">=60</span><span class="s0">&gt;&lt;/td&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/image_0196.jpg&quot; </span><span class="s2">width</span><span class="s3">=60</span><span class="s0">&gt;&lt;/td&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/i8.jpg&quot; </span><span class="s2">width</span><span class="s3">=60</span><span class="s0">&gt;&lt;/td&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/i9.jpg&quot; </span><span class="s2">width</span><span class="s3">=60</span><span class="s0">&gt;&lt;/td&gt;</span>
+    <span class="s0">&lt;/tr&gt;</span>
+  <span class="s0">&lt;/tbody&gt;&lt;/table&gt;</span>
+  <span class="s1">Which are Faces?</span>
+<span class="s0">&lt;/td&gt;</span>
+<span class="s0">&lt;/tr&gt;</span>
+<span class="s0">&lt;/tbody&gt;&lt;/table&gt;</span>
+
+<span class="s0">&lt;br&gt;</span>
+<span class="s0">&lt;br&gt;</span>
+<span class="s0">&lt;em&gt;</span><span class="s1">Due 12/08 at 11:59pm</span><span class="s0">&lt;/em&gt;</span>
+
+<span class="s0">&lt;h2&gt;</span><span class="s1">Introduction</span><span class="s0">&lt;/h2&gt;</span>
+<span class="s0">&lt;p&gt;</span><span class="s1">In this project, you will design three classifiers: a naive Bayes classifier, a perceptron </span>
+<span class="s1">classifier and a large-margin (MIRA) classifier. You will test your classifiers on two </span>
+<span class="s1">image data sets: a set of scanned handwritten digit images and a set of face images </span>
+<span class="s1">in which edges have already been detected. Even with simple features, your classifiers will </span>
+<span class="s1">be able to do quite well on these tasks when given enough training data.</span>
+
+
+<span class="s0">&lt;p&gt;</span><span class="s1">Optical character recognition (</span><span class="s0">&lt;a </span><span class="s2">href</span><span class="s3">=&quot;http://en.wikipedia.org/wiki/Optical_character_recognition&quot;</span><span class="s0">&gt;</span><span class="s1">OCR</span><span class="s0">&lt;/a&gt;</span><span class="s1">) </span>
+<span class="s1">is the task of extracting text from image sources. The first</span>
+<span class="s1">data set on which you will run your classifiers is a collection of handwritten numerical digits (0-9). </span>
+<span class="s1">This is a very commercially useful technology, similar to the technique used by the </span>
+<span class="s1">US post office to route mail by zip codes. </span>
+<span class="s1">There are systems that can perform with over 99% classification accuracy </span>
+<span class="s1">(see </span><span class="s0">&lt;a </span><span class="s2">href</span><span class="s3">=&quot;http://yann.lecun.com/exdb/lenet/index.html&quot;</span><span class="s0">&gt;</span><span class="s1">LeNet-5</span><span class="s0">&lt;/a&gt; </span><span class="s1">for an example system in action).</span>
+
+<span class="s0">&lt;p&gt;</span><span class="s1">Face detection is the task of localizing faces within video or still images.  The faces can be at any </span>
+<span class="s1">location and vary in size. There are many applications for face detection, including human computer </span>
+<span class="s1">interaction and surveillance. You will attempt a simplified face detection task in which your system is </span>
+<span class="s1">presented with an image that has been pre-processed by an edge detection algorithm.  The task is </span>
+<span class="s1">to determine whether the edge image is a face or not. There are several systems in use that perform </span>
+<span class="s1">quite well at the face detection task. One good system is the </span>
+<span class="s0">&lt;a </span><span class="s2">href</span><span class="s3">=&quot;http://vasc.ri.cmu.edu/NNFaceDetector/&quot;</span><span class="s0">&gt;</span><span class="s1">Face Detector</span><span class="s0">&lt;/a&gt; </span><span class="s1">by Schneiderman and Kanade. </span>
+<span class="s1">You can even try it out on your own photos in this </span><span class="s0">&lt;a </span><span class="s2">href</span><span class="s3">=&quot;http://demo.pittpatt.com/&quot;</span><span class="s0">&gt;</span><span class="s1">demo</span><span class="s0">&lt;/a&gt;</span><span class="s1">.</span>
+
+<span class="s0">&lt;p&gt;</span><span class="s1">The code for this project includes the following files and data, available as a </span>
+<span class="s0">&lt;a </span><span class="s2">href</span><span class="s3">=&quot;classification.zip&quot;</span><span class="s0">&gt;</span><span class="s1">zip file</span><span class="s0">&lt;/a&gt;</span><span class="s1">.</span><span class="s4">&amp;nbsp;</span><span class="s0">&lt;/p&gt; </span>
+<span class="s0">&lt;table </span><span class="s2">border</span><span class="s3">=&quot;0&quot; </span><span class="s2">cellpadding</span><span class="s3">=&quot;5&quot;</span><span class="s0">&gt;</span>
+  <span class="s0">&lt;tbody&gt;</span>
+  <span class="s0">&lt;tr&gt;</span>
+      <span class="s0">&lt;td </span><span class="s2">colspan</span><span class="s3">=&quot;2&quot;</span><span class="s0">&gt;&lt;h5&gt;</span><span class="s1">Data file</span><span class="s0">&lt;/h5&gt;&lt;/td&gt;</span>
+  <span class="s0">&lt;/tr&gt;</span>
+  <span class="s0">&lt;tr&gt;</span>
+    <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;data.zip&quot;</span><span class="s0">&gt;&lt;code&gt;</span><span class="s1">data.zip</span><span class="s0">&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;</span>
+    <span class="s0">&lt;td&gt;</span><span class="s1">Data file, including the digit and face data. </span><span class="s0">&lt;/td&gt;</span>
+  <span class="s0">&lt;/tr&gt;</span>
+  
+  <span class="s0">&lt;tr&gt;</span>
+      <span class="s0">&lt;td </span><span class="s2">colspan</span><span class="s3">=&quot;2&quot;</span><span class="s0">&gt;&lt;h5&gt;</span><span class="s1">Files you will edit</span><span class="s0">&lt;/h5&gt;&lt;/td&gt;</span>
+  <span class="s0">&lt;/tr&gt;</span>
+  <span class="s0">&lt;tr&gt;</span>
+    <span class="s0">&lt;td&gt;&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/naiveBayes.html&quot;</span><span class="s0">&gt;</span><span class="s1">naiveBayes.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;&lt;/td&gt;</span>
+    <span class="s0">&lt;td&gt;</span><span class="s1">The location where you will write your naive Bayes classifier. </span><span class="s0">&lt;/td&gt;</span>
+  <span class="s0">&lt;/tr&gt;</span>
+  <span class="s0">&lt;tr&gt;</span>
+    <span class="s0">&lt;td&gt;&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/perceptron.html&quot;</span><span class="s0">&gt;</span><span class="s1">perceptron.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;&lt;/td&gt;</span>
+    <span class="s0">&lt;td&gt;</span><span class="s1">The location where you will write your perceptron classifier. </span><span class="s0">&lt;/td&gt;</span>
+  <span class="s0">&lt;/tr&gt;</span>
+  <span class="s0">&lt;tr&gt;</span>
+      <span class="s0">&lt;td&gt;&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/mira.html&quot;</span><span class="s0">&gt;</span><span class="s1">mira.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;&lt;/td&gt;</span>
+      <span class="s0">&lt;td&gt;</span><span class="s1">The location where you will write your MIRA classifier. </span><span class="s0">&lt;/td&gt;</span>
+    <span class="s0">&lt;/tr&gt;</span>
+  <span class="s0">&lt;tr&gt;</span>
+    <span class="s0">&lt;td&gt;&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/dataClassifier.html&quot;</span><span class="s0">&gt;</span><span class="s1">dataClassifier.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;&lt;/td&gt;</span>
+    <span class="s0">&lt;td&gt;</span><span class="s1">The wrapper code that will call your classifiers. You will also write your </span>
+    <span class="s1">enhanced feature extractor here. You will also use this code to analyze the behavior of your</span>
+    <span class="s1">classifier. </span><span class="s0">&lt;/td&gt;</span>
+  <span class="s0">&lt;/tr&gt;</span>
+  
+  <span class="s0">&lt;tr&gt;</span>
+        <span class="s0">&lt;td </span><span class="s2">colspan</span><span class="s3">=&quot;2&quot;</span><span class="s0">&gt;&lt;h5&gt;</span><span class="s1">Files you should read but NOT edit</span><span class="s0">&lt;/h5&gt;&lt;/td&gt;</span>
+  <span class="s0">&lt;/tr&gt;</span>
+  <span class="s0">&lt;tr&gt;</span>
+    <span class="s0">&lt;td&gt;&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/classificationMethod.html&quot;</span><span class="s0">&gt;</span><span class="s1">classificationMethod.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;&lt;/td&gt;</span>
+    <span class="s0">&lt;td&gt;</span><span class="s1">Abstract super class for the classifiers you will write. </span><span class="s0">&lt;br&gt;</span><span class="s1">(You </span><span class="s0">&lt;b&gt;</span><span class="s1">should</span><span class="s0">&lt;/b&gt; </span><span class="s1">read this file carefully to see how the infrastructure is set up.)</span><span class="s0">&lt;/td&gt;</span>
+  <span class="s0">&lt;/tr&gt;</span>
+  <span class="s0">&lt;tr&gt;</span>
+    <span class="s0">&lt;td&gt;&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/samples.html&quot;</span><span class="s0">&gt;</span><span class="s1">samples.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;&lt;/td&gt;</span>
+    <span class="s0">&lt;td&gt;</span><span class="s1">I/O code to read in the classification data.  </span><span class="s0">&lt;/td&gt;</span>
+  <span class="s0">&lt;/tr&gt;</span>
+  <span class="s0">&lt;tr&gt;</span>
+    <span class="s0">&lt;td&gt;&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/util.html&quot;</span><span class="s0">&gt;</span><span class="s1">util.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;&lt;/td&gt;</span>
+    <span class="s0">&lt;td&gt;</span><span class="s1">Code defining some useful tools.  You may be familiar with some of these by now, and </span>
+    <span class="s1">they will save you a lot of time.</span>
+    <span class="s0">&lt;/td&gt; &lt;/tr&gt;</span>
+  <span class="s0">&lt;tr&gt;</span>
+    <span class="s0">&lt;td&gt;&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/mostFrequent.html&quot;</span><span class="s0">&gt;</span><span class="s1">mostFrequent.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;&lt;/td&gt;</span>
+    <span class="s0">&lt;td&gt;</span><span class="s1">A simple baseline classifier that just labels every instance as the most frequent class. </span><span class="s0">&lt;/td&gt;</span>
+  <span class="s0">&lt;/tr&gt;</span>
+
+<span class="s0">&lt;/tbody&gt;&lt;/table&gt;</span>
+<span class="s0">&lt;p&gt;</span>
+<span class="s0">&lt;/p&gt;&lt;p&gt;&lt;strong&gt;</span><span class="s1">What to submit:</span><span class="s0">&lt;/strong&gt; </span><span class="s1">You will fill in portions of </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/naiveBayes.html&quot;</span><span class="s0">&gt;</span><span class="s1">naiveBayes.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;</span><span class="s1">,</span>
+<span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/perceptron.html&quot;</span><span class="s0">&gt;</span><span class="s1">perceptron.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;</span><span class="s1">, </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/mira.html&quot;</span><span class="s0">&gt;</span><span class="s1">mira.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt; </span><span class="s1">and </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/dataClassifier.html&quot;</span><span class="s0">&gt;</span><span class="s1">dataClassifier.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;</span>
+<span class="s1">(only) during the assignment, and submit them. If you do the minicontest, submit</span>
+<span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/minicontest.html&quot;</span><span class="s0">&gt;</span><span class="s1">minicontest.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt; </span><span class="s1">as well.</span><span class="s0">&lt;/p&gt;</span>
+
+<span class="s0">&lt;p&gt;&lt;strong&gt;</span><span class="s1">Evaluation:</span><span class="s0">&lt;/strong&gt; </span><span class="s1">Your code will be autograded for technical</span>
+<span class="s1">correctness. Please </span><span class="s0">&lt;em&gt;</span><span class="s1">do not</span><span class="s0">&lt;/em&gt; </span><span class="s1">change the names of any provided functions</span>
+<span class="s1">or classes within the code, or you will wreak havoc on the autograder.</span>
+<span class="s0">&lt;/p&gt;</span>
+
+<span class="s0">&lt;p&gt;&lt;strong&gt;</span><span class="s1">Academic Dishonesty:</span><span class="s0">&lt;/strong&gt; </span><span class="s1">We will be checking your code against</span>
+<span class="s1">other submissions in the class for logical redundancy. If you copy someone</span>
+<span class="s1">else's code and submit it with minor changes, we will know. These cheat</span>
+<span class="s1">detectors are quite hard to fool, so please don't try. We trust you all to</span>
+<span class="s1">submit your own work only; please don't let us down. Instead, contact the course</span>
+<span class="s1">staff if you are having trouble.</span>
+
+<span class="s0">&lt;h2&gt;</span><span class="s1">Getting Started</span><span class="s0">&lt;/h2&gt;</span>
+<span class="s0">&lt;p&gt; </span><span class="s1">To try out the classification pipeline, run </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/dataClassifier.html&quot;</span><span class="s0">&gt;</span><span class="s1">dataClassifier.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt; </span>
+<span class="s1">from the command line. This </span>
+<span class="s1">will classify the digit data using the default classifier (</span><span class="s0">&lt;code&gt;</span><span class="s1">mostFrequent</span><span class="s0">&lt;/code&gt;</span><span class="s1">) which blindly classifies every example</span>
+<span class="s1">with the most frequent label.</span>
+
+<span class="s0">&lt;pre&gt;</span><span class="s1">python dataClassifier.py  </span><span class="s0">&lt;/pre&gt;</span>
+
+<span class="s0">&lt;p&gt;</span><span class="s1">As usual, you can learn more about the possible command line options by running: </span>
+    
+<span class="s0">&lt;pre&gt;</span><span class="s1">python dataClassifier.py -h  </span><span class="s0">&lt;/pre&gt;</span>
+
+<span class="s0">&lt;p&gt; </span><span class="s1">We have defined some simple features for you. </span>
+<span class="s1">Later you will design some better features. Our simple feature set includes one feature for</span>
+<span class="s1">each pixel location, which can take values 0 or 1 (off or on). The features are encoded as </span>
+<span class="s1">a </span><span class="s0">&lt;code&gt;</span><span class="s1">Counter</span><span class="s0">&lt;/code&gt; </span><span class="s1">where keys are feature locations (represented as (column,row)) and </span>
+<span class="s1">values are 0 or 1. The face recognition data set has value 1 only for those pixels identified </span>
+<span class="s1">by a Canny edge detector.</span>
+
+<span class="s0">&lt;p&gt; </span><span class="s1">Implementation Note: You'll find it easiest to hard-code the binary feature assumption. </span>
+<span class="s1">If you do, make sure you don't include any non-binary features. Or, you can write you code</span>
+<span class="s1">more generally, to handle arbitrary feature values, though this will probably involve</span>
+<span class="s1">a preliminary pass through the training set to find all possible feature values (and you'll</span>
+<span class="s1">need an &quot;unknown&quot; option in case you encounter a value in the test data you never saw</span>
+<span class="s1">during training).</span>
+
+<span class="s0">&lt;h2&gt;</span><span class="s1">Naive Bayes</span><span class="s0">&lt;/h2&gt;</span>
+
+<span class="s0">&lt;p&gt; </span><span class="s1">A skeleton implementation of a naive Bayes classifier is provided for you in </span>
+<span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/naiveBayes.html&quot;</span><span class="s0">&gt;</span><span class="s1">naiveBayes.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;</span><span class="s1">. </span>
+<span class="s1">You will fill in the </span><span class="s0">&lt;code&gt;</span><span class="s1">trainAndTune</span><span class="s0">&lt;/code&gt; </span><span class="s1">function, the </span>
+<span class="s0">&lt;code&gt;</span><span class="s1">calculateLogJointProbabilities</span><span class="s0">&lt;/code&gt; </span><span class="s1">function and the </span>
+<span class="s0">&lt;code&gt;</span><span class="s1">findHighOddsFeatures</span><span class="s0">&lt;/code&gt; </span><span class="s1">function.</span>
+
+<span class="s0">&lt;h4&gt;</span><span class="s1">Theory</span><span class="s0">&lt;/h4&gt;</span>
+
+<span class="s0">&lt;p&gt;</span><span class="s1">A naive Bayes classifier</span>
+ <span class="s1">models a joint distribution over a label </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;17&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;14&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;BOTTOM&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img1.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$Y$&quot;</span><span class="s0">&gt; </span><span class="s1">and a set of observed random variables, or </span><span class="s0">&lt;I&gt;</span><span class="s1">features</span><span class="s0">&lt;/I&gt;</span><span class="s1">, </span>
+<span class="s0">&lt;IMG</span>
+ <span class="s2">HEIGHT</span><span class="s3">=&quot;18&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;TOP&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img2.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$\{F_1, F_2, \ldots F_n\}$&quot;</span><span class="s0">&gt;</span><span class="s1">,</span>
+ <span class="s1">using the assumption that the full joint distribution can be factored as follows (features are conditionally independent given the label):</span>
+ <span class="s0">&lt;BR&gt;&lt;P&gt;&lt;/P&gt;</span>
+<span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;IMG</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img3.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;\begin{displaymath} 
+P(F_1 \ldots F_n, Y) = P(Y) \prod_i P(F_i \vert Y) 
+\end{displaymath}&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;/DIV&gt;</span>
+<span class="s0">&lt;BR </span><span class="s2">CLEAR</span><span class="s3">=&quot;ALL&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;P&gt;&lt;/P&gt;</span>
+
+<span class="s0">&lt;P&gt;</span>
+<span class="s1">To classify a datum, we can find the most probable label given the feature values for each pixel, using Bayes theorem:</span>
+<span class="s0">&lt;P&gt;&lt;/P&gt;</span>
+<span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;IMG</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img4_new.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;\begin{eqnarray*} 
+P(y \vert f_1, \ldots, f_m) </span><span class="s4">&amp;amp;</span><span class="s3">=</span><span class="s4">&amp;amp; </span><span class="s3">\frac{P(f_1, \ldots, f_m \... 
+... 
+</span><span class="s4">&amp;amp;</span><span class="s3">=</span><span class="s4">&amp;amp; </span><span class="s3">\textmd{arg max}_{y} P(y) \prod_{i = 1}^m P(f_i \vert y) 
+\end{eqnarray*}&quot;</span><span class="s0">&gt;&lt;/DIV&gt;</span>
+<span class="s0">&lt;BR </span><span class="s2">CLEAR</span><span class="s3">=&quot;ALL&quot;</span><span class="s0">&gt;&lt;P&gt;&lt;/P&gt;</span>
+
+<span class="s0">&lt;P&gt;</span>
+<span class="s1">Because multiplying many probabilities together often results in underflow, we will instead compute </span><span class="s0">&lt;em&gt;&lt;b&gt;</span><span class="s1">log</span>
+<span class="s1">probabilities</span><span class="s0">&lt;/b&gt;&lt;/em&gt; </span><span class="s1">which have the same argmax:</span>
+<span class="s0">&lt;P&gt;&lt;/P&gt;</span>
+<span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;IMG</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img5.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;\begin{eqnarray*} 
+\textmd{arg max}_{y} log(P(y \vert f_1, \ldots, f_m) </span><span class="s4">&amp;amp;</span><span class="s3">=</span><span class="s4">&amp;amp; </span><span class="s3">\te... 
+...{arg max}_{y} (log(P(y)) + \sum_{i = 1}^m log(P(f_i \vert y))) 
+\end{eqnarray*}&quot;</span><span class="s0">&gt;&lt;/DIV&gt;</span>
+<span class="s0">&lt;BR </span><span class="s2">CLEAR</span><span class="s3">=&quot;ALL&quot;</span><span class="s0">&gt;&lt;P&gt;&lt;/P&gt;</span>
+
+
+
+<span class="s0">&lt;p&gt; </span><span class="s1">To compute logarithms, use </span><span class="s0">&lt;code&gt;</span><span class="s1">math.log()</span><span class="s0">&lt;/code&gt;</span><span class="s1">, a built-in Python function.</span>
+
+<span class="s0">&lt;h4&gt;</span><span class="s1">Parameter Estimation</span><span class="s0">&lt;/h4&gt;</span>
+<span class="s1">Our naive Bayes model has several parameters to estimate.  One</span>
+<span class="s1">parameter is the </span><span class="s0">&lt;em&gt;&lt;b&gt;</span><span class="s1">prior distribution</span><span class="s0">&lt;/b&gt;&lt;/em&gt; </span><span class="s1">over labels (digits, or face/not-face),</span>
+<span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;42&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;32&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img6.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$P(Y)$&quot;</span><span class="s0">&gt;</span><span class="s1">.</span>
+
+<span class="s0">&lt;P&gt;</span>
+<span class="s1">We can estimate </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;42&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;32&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img6.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$P(Y)$&quot;</span><span class="s0">&gt; </span><span class="s1">directly from the training data:</span>
+<span class="s0">&lt;BR&gt;&lt;P&gt;&lt;/P&gt;</span>
+<span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;IMG</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img7.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;\begin{displaymath} 
+\hat{P}(y) = \frac{c(y)}{n} 
+\end{displaymath}&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;/DIV&gt;</span>
+<span class="s0">&lt;BR </span><span class="s2">CLEAR</span><span class="s3">=&quot;ALL&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;P&gt;&lt;/P&gt;</span>
+<span class="s1">where </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;32&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;32&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img8.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$c(y)$&quot;</span><span class="s0">&gt; </span><span class="s1">is the number of training instances with label y and</span>
+<span class="s1">n is the total number of training instances.</span>
+
+<span class="s0">&lt;P&gt;</span>
+<span class="s1">The other parameters to estimate are the </span><span class="s0">&lt;em&gt;&lt;b&gt;</span><span class="s1">conditional probabilities</span><span class="s0">&lt;/em&gt;&lt;/b&gt; </span><span class="s1">of</span>
+<span class="s1">our features given each label y: </span>
+<span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;92&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;32&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img9.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$P(F_i \vert Y = y)$&quot;</span><span class="s0">&gt;</span><span class="s1">. We do this for each</span>
+<span class="s1">possible feature value (</span><span class="s0">&lt;IMG</span>
+ <span class="s2">HEIGHT</span><span class="s3">=&quot;18&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;TOP&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img10.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$f_i \in {0,1}$&quot;</span><span class="s0">&gt;</span><span class="s1">).</span>
+<span class="s0">&lt;P&gt;&lt;/P&gt;</span>
+<span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;A </span><span class="s2">NAME</span><span class="s3">=&quot;empirical&quot;</span><span class="s0">&gt;&lt;/A&gt;&lt;IMG</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img11.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;\begin{eqnarray*} 
+\hat{P}(F_i=f_i\vert Y=y) </span><span class="s4">&amp;amp;</span><span class="s3">=</span><span class="s4">&amp;amp; </span><span class="s3">\frac{c(f_i,y)}{\sum_{f_i}{c(f_i,y)}} \\ 
+\end{eqnarray*}&quot;</span><span class="s0">&gt;&lt;/DIV&gt;</span>
+<span class="s0">&lt;BR </span><span class="s2">CLEAR</span><span class="s3">=&quot;ALL&quot;</span><span class="s0">&gt;&lt;P&gt;&lt;/P&gt;</span>
+<span class="s1">where </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;52&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;32&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img12.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$c(f_i,y)$&quot;</span><span class="s0">&gt; </span><span class="s1">is the number of times pixel </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;20&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img13.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$F_i$&quot;</span><span class="s0">&gt; </span><span class="s1">took value </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;18&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img14.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$f_i$&quot;</span><span class="s0">&gt;</span>
+<span class="s1">in the training examples of label y.</span>
+
+<span class="s0">&lt;/p&gt;&lt;h4&gt;</span><span class="s1">Smoothing</span><span class="s0">&lt;/h4&gt;</span>
+<span class="s1">Your current parameter estimates are </span><span class="s0">&lt;I&gt;</span><span class="s1">unsmoothed</span><span class="s0">&lt;/I&gt;</span><span class="s1">, that is, you are</span>
+<span class="s1">using the empirical estimates for the parameters </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;55&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;32&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img15.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$P(f_i\vert y)$&quot;</span><span class="s0">&gt;</span><span class="s1">.  These</span>
+<span class="s1">estimates are rarely adequate in real systems.  Minimally, we need to</span>
+<span class="s1">make sure that no parameter ever receives an estimate of zero, but</span>
+<span class="s1">good smoothing can boost accuracy quite a bit by reducing</span>
+<span class="s1">overfitting.</span>
+
+<span class="s0">&lt;P&gt;</span>
+<span class="s1">In this project, we use </span><span class="s0">&lt;em&gt;</span><span class="s1">Laplace smoothing</span><span class="s0">&lt;/em&gt;</span><span class="s1">, which adds </span><span class="s0">&lt;em&gt;</span><span class="s1">k</span><span class="s0">&lt;/em&gt; </span><span class="s1">counts to every possible observation value:</span>
+<span class="s0">&lt;p&gt;</span>
+<span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;    </span>
+<span class="s0">&lt;IMG</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/imgsmoothlaplace.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$P(F_i=f_i\vert Y=y) = \frac{c(F_i=f_i,Y=y)+k}{\sum_{f_i}{(c(F_i=f_i,Y=y)+k)}}$&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;/DIV&gt;</span>
+<span class="s0">&lt;p&gt;</span>
+<span class="s1">If k=0, the probabilities are unsmoothed.  As k grows larger, the probabilities are </span>
+<span class="s1">smoothed more and more. You can use your validation set to determine a good value </span>
+<span class="s1">for k.  </span><span class="s0">&lt;strong&gt;</span><span class="s1">Note</span><span class="s0">&lt;/strong&gt;</span><span class="s1">: don't smooth P(Y).</span>
+
+<span class="s0">&lt;p&gt;&lt;em&gt;&lt;strong&gt;</span><span class="s1">Question 1 (6 points)</span><span class="s0">&lt;/strong&gt;&lt;/em&gt;</span>
+<span class="s1">Implement </span><span class="s0">&lt;code&gt;</span><span class="s1">trainAndTune</span><span class="s0">&lt;/code&gt; </span><span class="s1">and </span><span class="s0">&lt;code&gt;</span><span class="s1">calculateLogJointProbabilities</span><span class="s0">&lt;/code&gt; </span><span class="s1">in </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/naiveBayes.html&quot;</span><span class="s0">&gt;</span><span class="s1">naiveBayes.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;</span><span class="s1">. </span>
+<span class="s1">In </span><span class="s0">&lt;code&gt;</span><span class="s1">trainAndTune</span><span class="s0">&lt;/code&gt;</span><span class="s1">, estimate conditional probabilities from the training data for each possible value</span>
+<span class="s1">of </span><span class="s0">&lt;em&gt;</span><span class="s1">k</span><span class="s0">&lt;/em&gt; </span><span class="s1">given in the list </span><span class="s0">&lt;code&gt;</span><span class="s1">kgrid</span><span class="s0">&lt;/code&gt;</span><span class="s1">.  </span>
+<span class="s1">Evaluate accuracy on the held-out validation set for each </span><span class="s0">&lt;em&gt;</span><span class="s1">k</span><span class="s0">&lt;/em&gt; </span><span class="s1">and choose</span>
+<span class="s1">the value with the highest validation accuracy.  In case of ties,</span>
+<span class="s1">prefer the </span><span class="s0">&lt;em&gt;</span><span class="s1">lowest</span><span class="s0">&lt;/em&gt; </span><span class="s1">value of </span><span class="s0">&lt;em&gt;</span><span class="s1">k</span><span class="s0">&lt;/em&gt;</span><span class="s1">.  Test your classifier with:</span>
+
+<span class="s0">&lt;pre&gt;</span><span class="s1">python dataClassifier.py -c naiveBayes --autotune </span><span class="s0">&lt;/pre&gt;</span>
+
+<span class="s0">&lt;p&gt;&lt;strong&gt;</span><span class="s1">Hints and observations:</span><span class="s0">&lt;/strong&gt;</span>
+<span class="s0">&lt;ul&gt;</span>
+    <span class="s0">&lt;li&gt; </span><span class="s1">The method </span><span class="s0">&lt;code&gt;</span><span class="s1">calculateLogJointProbabilities</span><span class="s0">&lt;/code&gt; </span><span class="s1">uses the conditional probability tables constructed by </span>
+<span class="s0">&lt;code&gt;</span><span class="s1">trainAndTune</span><span class="s0">&lt;/code&gt; </span><span class="s1">to compute the log posterior probability for each label y given a feature vector. The comments of the method describe the data structures of the input and output.</span>
+    <span class="s0">&lt;li&gt; </span><span class="s1">You can add code to the </span><span class="s0">&lt;code&gt;</span><span class="s1">analysis</span><span class="s0">&lt;/code&gt; </span><span class="s1">method in </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/dataClassifier.html&quot;</span><span class="s0">&gt;</span><span class="s1">dataClassifier.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt; </span><span class="s1">to explore the mistakes that your classifier is making.  This is optional.</span>
+    <span class="s0">&lt;li&gt; </span><span class="s1">When trying different values of the smoothing parameter </span><span class="s0">&lt;em&gt;</span><span class="s1">k</span><span class="s0">&lt;/em&gt;</span><span class="s1">, think about the number of times you scan the training data. Your code should save computation by avoiding redundant reading.</span>
+    <span class="s0">&lt;li&gt; </span><span class="s1">To run your classifier with only one particular value of </span><span class="s0">&lt;em&gt;</span><span class="s1">k</span><span class="s0">&lt;/em&gt;</span><span class="s1">, remove the </span><span class="s0">&lt;code&gt;</span><span class="s1">--autotune</span><span class="s0">&lt;/code&gt; </span><span class="s1">option.  This will ensure that </span><span class="s0">&lt;code&gt;</span><span class="s1">kgrid</span><span class="s0">&lt;/code&gt; </span><span class="s1">has only one value, which you can change with </span><span class="s0">&lt;code&gt;</span><span class="s1">-k</span><span class="s0">&lt;/code&gt;</span><span class="s1">.</span>
+    <span class="s0">&lt;li&gt; </span><span class="s1">Using a fixed value of </span><span class="s0">&lt;em&gt;</span><span class="s1">k=2</span><span class="s0">&lt;/em&gt; </span><span class="s1">and 100 training examples, you should get a validation accuracy of about 69% and a test accuracy of 55%.</span>
+    <span class="s0">&lt;li&gt; </span><span class="s1">Using </span><span class="s0">&lt;code&gt;</span><span class="s1">--autotune</span><span class="s0">&lt;/code&gt;</span><span class="s1">, which tries different values of </span><span class="s0">&lt;em&gt;</span><span class="s1">k</span><span class="s0">&lt;/em&gt;</span><span class="s1">, you should get a validation accuracy of about 74% and a test accuracy of 65%.</span>
+    <span class="s0">&lt;li&gt; </span><span class="s1">Accuracies may vary slightly because of implementation details.  For instance, ties are not deterministically</span>
+        <span class="s1">broken in the </span><span class="s0">&lt;code&gt;</span><span class="s1">Counter.argMax()</span><span class="s0">&lt;/code&gt; </span><span class="s1">method.</span>
+    <span class="s0">&lt;li&gt; </span><span class="s1">To run on the face recognition dataset, use </span><span class="s0">&lt;code&gt;</span><span class="s1">-d faces</span><span class="s0">&lt;/code&gt; </span><span class="s1">(optional).</span>
+<span class="s0">&lt;/ul&gt;</span>
+
+
+<span class="s0">&lt;/p&gt;&lt;h4&gt;</span><span class="s1">Odds Ratios</span><span class="s0">&lt;/h4&gt;</span>
+<span class="s1">One important tool in using classifiers in real domains is being able</span>
+<span class="s1">to inspect what they have learned.  One way to inspect a naive Bayes</span>
+<span class="s1">model is to look at the most likely features for a given label.</span>
+
+<span class="s0">&lt;P&gt;</span>
+<span class="s1">Another, better, tool for understanding the parameters is to look at </span><span class="s0">&lt;I&gt;</span><span class="s1">odds ratios</span><span class="s0">&lt;/I&gt;</span><span class="s1">.  For each pixel</span>
+<span class="s1">feature </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;20&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img13.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$F_i$&quot;</span><span class="s0">&gt; </span><span class="s1">and classes </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;41&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img23_new.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$y_1, y_2$&quot;</span><span class="s0">&gt;</span><span class="s1">, consider the odds ratio:</span>
+<span class="s0">&lt;BR&gt;&lt;P&gt;&lt;/P&gt;</span>
+<span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;IMG</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img24.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;\begin{displaymath} 
+\mbox{odds}(F_i=on, y_1, y_2) = \frac{P(F_i=on\vert y_1)}{P(F_i=on\vert y_2)} 
+\end{displaymath}&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;/DIV&gt;</span>
+<span class="s0">&lt;BR </span><span class="s2">CLEAR</span><span class="s3">=&quot;ALL&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;P&gt;&lt;/P&gt;</span>
+<span class="s1">This ratio will be greater than one for features which cause belief in</span>
+<span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;19&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img25_new.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$y_1$&quot;</span><span class="s0">&gt; </span><span class="s1">to increase relative to </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;19&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img26_new.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$y_2$&quot;</span><span class="s0">&gt;</span><span class="s1">.</span>
+
+<span class="s0">&lt;P&gt; </span><span class="s1">The features that have the greatest impact at classification time are those with both a high</span>
+<span class="s1">probability (because they appear often in the data) and a high odds ratio (because they strongly bias</span>
+<span class="s1">one label versus another).</span>
+
+<span class="s0">&lt;P&gt;&lt;em&gt;&lt;strong&gt;</span><span class="s1">Question 2 (2 points)</span><span class="s0">&lt;/strong&gt;&lt;/em&gt;</span>
+<span class="s1">Fill in the function </span><span class="s0">&lt;code&gt;</span><span class="s1">findHighOddsFeatures(self, label1, label2)</span><span class="s0">&lt;/code&gt;</span><span class="s1">. </span>
+<span class="s1">It should return a list of the 100 features with highest odds ratios for </span><span class="s0">&lt;code&gt;</span><span class="s1">label1</span><span class="s0">&lt;/code&gt;</span>
+<span class="s1">over </span><span class="s0">&lt;code&gt;</span><span class="s1">label2</span><span class="s0">&lt;/code&gt;</span><span class="s1">.</span>
+<span class="s1">The option </span><span class="s0">&lt;code&gt;</span><span class="s1">-o</span><span class="s0">&lt;/code&gt; </span><span class="s1">activates an odds ratio analysis.</span>
+<span class="s1">Use the options </span><span class="s0">&lt;code&gt;</span><span class="s1">-1 label1 -2 label2</span><span class="s0">&lt;/code&gt; </span><span class="s1">to specify which labels to compare. Running the following command will show you the 100 pixels that best distinguish between a 3 and a 6.</span>
+
+<span class="s0">&lt;pre&gt;</span><span class="s1">python dataClassifier.py -a -d digits -c naiveBayes -o -1 3 -2 6  </span><span class="s0">&lt;/pre&gt;</span>
+
+<span class="s0">&lt;h2&gt;</span><span class="s1">Perceptron</span><span class="s0">&lt;/h2&gt;</span>
+<span class="s0">&lt;br/&gt;</span>
+<span class="s1">A skeleton implementation of a perceptron classifier is provided for</span>
+<span class="s1">you in </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/perceptron.html&quot;</span><span class="s0">&gt;</span><span class="s1">perceptron.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;</span><span class="s1">. You will fill in the </span>
+<span class="s0">&lt;code&gt;</span><span class="s1">train</span><span class="s0">&lt;/code&gt; </span><span class="s1">function, and the </span><span class="s0">&lt;code&gt;</span><span class="s1">findHighOddsFeatures</span><span class="s0">&lt;/code&gt; </span><span class="s1">function.</span>
+
+<span class="s0">&lt;P&gt;</span>
+<span class="s1">Unlike the naive Bayes classifier, a perceptron does not use</span>
+<span class="s1">probabilities to make its decisions.  Instead, it keeps a</span>
+<span class="s1">weight vector </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;24&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;17&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;BOTTOM&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img31_new.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$w^y$&quot;</span><span class="s0">&gt; </span><span class="s1">of each class </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;13&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img32_new.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$y$&quot;</span><span class="s0">&gt; </span><span class="s1">(</span><span class="s0">&lt;IMG</span>
+  <span class="s2">WIDTH</span><span class="s3">=&quot;13&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+  <span class="s2">SRC</span><span class="s3">=&quot;images/img32_new.png&quot;</span>
+  <span class="s2">ALT</span><span class="s3">=&quot;$y$&quot;</span><span class="s0">&gt; </span><span class="s1">is an identifier, not an exponent).  Given a feature list </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;14&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img33.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$f$&quot;</span><span class="s0">&gt;</span><span class="s1">,</span>
+<span class="s1">the perceptron compute the class </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;13&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img32_new.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$y$&quot;</span><span class="s0">&gt; </span><span class="s1">whose weight vector is most similar</span>
+<span class="s1">to the input vector </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;14&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img33.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$f$&quot;</span><span class="s0">&gt;</span><span class="s1">.  Formally, given a feature vector </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;14&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img33.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$f$&quot;</span><span class="s0">&gt; </span><span class="s1">(in our case, a map from pixel locations to indicators of whether they are on), we score each class with:</span>
+<span class="s0">&lt;BR&gt;&lt;P&gt;&lt;/P&gt;</span>
+<span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;IMG</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img34.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;\begin{displaymath} 
+\mbox{score}(f,y) = \sum_i f_i w^y_i 
+\end{displaymath}&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;/DIV&gt;</span>
+<span class="s1">Then we choose the class with highest score as the predicted label for that data instance.</span>
+<span class="s1">In the code, we will represent </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;24&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;17&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;BOTTOM&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img31_new.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$w^y$&quot;</span><span class="s0">&gt; </span><span class="s1">as a </span><span class="s0">&lt;code&gt;</span><span class="s1">Counter</span><span class="s0">&lt;/code&gt;</span><span class="s1">.</span>
+
+<span class="s0">&lt;/p&gt;&lt;h4&gt;</span><span class="s1">Learning weights</span><span class="s0">&lt;/h4&gt;</span>
+<span class="s1">In the</span>
+<span class="s1">basic multi-class perceptron, we scan over the data, one instance at a</span>
+<span class="s1">time.  When we come to an instance </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;41&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;32&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img35.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$(f, y)$&quot;</span><span class="s0">&gt;</span><span class="s1">, we find the label with highest score:</span>
+<span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;IMG</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img36.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;\begin{displaymath} 
+y' = \textmd{arg max}_{y''} score(f,y'') 
+\end{displaymath}&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;/DIV&gt;</span>
+<span class="s0">&lt;P&gt;&lt;/P&gt;</span>
+<span class="s1">We compare </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;17&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;32&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img37.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$y'$&quot;</span><span class="s0">&gt; </span><span class="s1">to the true label </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;13&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img32_new.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$y$&quot;</span><span class="s0">&gt;</span><span class="s1">.  If </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;47&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;32&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img38.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$y' = y$&quot;</span><span class="s0">&gt;</span><span class="s1">, we've gotten the</span>
+<span class="s1">instance correct, and we do nothing.  Otherwise, we guessed </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;17&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;32&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img37.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$y'$&quot;</span><span class="s0">&gt; </span><span class="s1">but</span>
+<span class="s1">we should have guessed </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;13&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img32_new.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$y$&quot;</span><span class="s0">&gt;</span><span class="s1">.  That means that </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;24&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;17&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;BOTTOM&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img31_new.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$w^y$&quot;</span><span class="s0">&gt; </span><span class="s1">should have scored </span><span class="s0">&lt;IMG</span>
+  <span class="s2">WIDTH</span><span class="s3">=&quot;14&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+  <span class="s2">SRC</span><span class="s3">=&quot;images/img33.png&quot;</span>
+  <span class="s2">ALT</span><span class="s3">=&quot;$f$&quot;</span><span class="s0">&gt; </span><span class="s1">higher, and </span><span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;28&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;18&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;BOTTOM&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img39.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$w^{y'}$&quot;</span><span class="s0">&gt; </span><span class="s1">should have scored</span>
+<span class="s0">&lt;IMG</span>
+ <span class="s2">WIDTH</span><span class="s3">=&quot;14&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img33.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$f$&quot;</span><span class="s0">&gt; </span><span class="s1">lower, in order to prevent this error in the future.  We update these two weight vectors accordingly:</span>
+<span class="s0">&lt;BR&gt;&lt;P&gt;&lt;/P&gt;</span>
+<span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;IMG</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img40.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;\begin{displaymath} 
+w^y += f 
+\end{displaymath}&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;/DIV&gt;</span>
+<span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;IMG</span>
+ <span class="s2">SRC</span><span class="s3">=&quot;images/img41.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;\begin{displaymath} 
+w^{y'} -= f 
+\end{displaymath}&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;/DIV&gt;</span>
+<span class="s0">&lt;P&gt;&lt;/P&gt;</span>
+
+<span class="s0">&lt;P&gt;</span>
+<span class="s1">Using the addition, subtraction, and multiplication functionality of the</span>
+<span class="s0">&lt;code&gt;</span><span class="s1">Counter</span><span class="s0">&lt;/code&gt; </span><span class="s1">class in </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/util.html&quot;</span><span class="s0">&gt;</span><span class="s1">util.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;</span><span class="s1">, the perceptron updates should be</span>
+<span class="s1">relatively easy to code.  Certain implementation issues have been</span>
+<span class="s1">taken care of for you in </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/perceptron.html&quot;</span><span class="s0">&gt;</span><span class="s1">perceptron.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;</span><span class="s1">, such as handling iterations</span>
+<span class="s1">over the training data and ordering the update trials.  Furthermore,</span>
+<span class="s1">the code sets up the </span><span class="s0">&lt;code&gt;</span><span class="s1">weights</span><span class="s0">&lt;/code&gt; </span><span class="s1">data structure for you.  Each</span>
+<span class="s1">legal label needs its own </span><span class="s0">&lt;code&gt;</span><span class="s1">Counter</span><span class="s0">&lt;/code&gt; </span><span class="s1">full of weights.</span>
+
+<span class="s0">&lt;P&gt;</span>
+
+<span class="s0">&lt;em&gt;&lt;strong&gt;</span><span class="s1">Question 3 (4 points)</span><span class="s0">&lt;/strong&gt;&lt;/em&gt;  </span><span class="s1">Fill in the </span><span class="s0">&lt;code&gt;</span><span class="s1">train</span><span class="s0">&lt;/code&gt; </span><span class="s1">method in </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/perceptron.html&quot;</span><span class="s0">&gt;</span><span class="s1">perceptron.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;</span><span class="s1">.  Run your code with:</span>
+
+<span class="s0">&lt;pre&gt;</span><span class="s1">python dataClassifier.py -c perceptron </span><span class="s0">&lt;/pre&gt;</span>
+
+<span class="s0">&lt;p&gt;&lt;strong&gt;</span><span class="s1">Hints and observations:</span><span class="s0">&lt;/strong&gt;</span>
+<span class="s0">&lt;ul&gt;</span>
+  <span class="s0">&lt;li&gt; </span><span class="s1">The command above should yield validation accuracies in the range between 40% to 70%</span>
+<span class="s1">and test accuracy between 40% and 70% (with the default 3 iterations).  These ranges are wide because the perceptron is a lot more sensitive to the specific choice of tie-breaking than naive Bayes.</span>
+  <span class="s0">&lt;li&gt; </span><span class="s1">One of the problems with the perceptron is that its performance is sensitive to</span>
+<span class="s1">several practical details, such as how many iterations you train it for, and the order you </span>
+<span class="s1">use for the training examples (in practice, using a randomized order works better</span>
+<span class="s1">than a fixed order).  The current code uses a default value of 3 training iterations. You</span>
+<span class="s1">can change the number of iterations for the perceptron with the </span><span class="s0">&lt;code&gt;</span><span class="s1">-i iterations</span><span class="s0">&lt;/code&gt;</span>
+<span class="s1">option. Try different numbers of iterations and see how it influences the performance.</span>
+<span class="s1">In practice, you would use the performance on the validation set to figure out</span>
+<span class="s1">when to stop training, but you don't need to implement this stopping criterion for</span>
+<span class="s1">this assignment.</span>
+<span class="s0">&lt;/ul&gt;</span>
+
+<span class="s0">&lt;/p&gt;&lt;h4&gt;</span><span class="s1">Visualizing weights</span><span class="s0">&lt;/h4&gt;</span>
+<span class="s1">Perceptron classifiers, and other discriminative methods, are often criticized </span>
+<span class="s1">because the parameters they learn are hard to interpret.  To see a demonstration </span>
+<span class="s1">of this issue, we can repeat the visualization exercise from the naive Bayes </span>
+<span class="s1">classifier.</span>
+
+<span class="s0">&lt;P&gt;</span>
+<span class="s0">&lt;em&gt;&lt;strong&gt;</span><span class="s1">Question 4 (1 point)</span><span class="s0">&lt;/strong&gt;&lt;/em&gt; </span><span class="s1">Fill in </span><span class="s0">&lt;code&gt;</span><span class="s1">findHighOddsFeatures(self, label1, label2)</span><span class="s0">&lt;/code&gt; </span><span class="s1">in </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/perceptron.html&quot;</span><span class="s0">&gt;</span><span class="s1">perceptron.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;</span><span class="s1">. </span>
+<span class="s1">It should return a list of the 100 features with highest difference in feature weights.  You can display the 100 pixels with the largest difference in</span>
+  <span class="s1">weights </span><span class="s0">&lt;IMG </span><span class="s2">WIDTH</span><span class="s3">=&quot;62&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;34&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot; </span><span class="s2">SRC</span><span class="s3">=&quot;images/img42.png&quot;</span>
+ <span class="s2">ALT</span><span class="s3">=&quot;$w^3 - w^6$&quot;</span><span class="s0">&gt; </span><span class="s1">using the command:</span>
+
+<span class="s0">&lt;pre&gt;</span><span class="s1">python dataClassifier.py -c perceptron -o -1 3 -2 6  </span><span class="s0">&lt;/pre&gt;</span>
+
+<span class="s0">&lt;h2&gt;</span><span class="s1">MIRA</span><span class="s0">&lt;/h2&gt;</span>
+<span class="s1">A skeleton implementation of the MIRA classifier is provided for you in </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/mira.html&quot;</span><span class="s0">&gt;</span><span class="s1">mira.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;</span><span class="s1">. MIRA is an online learner which is closely related to both the support vector machine and perceptron classifiers.  You will fill in the </span><span class="s0">&lt;code&gt;</span><span class="s1">trainAndTune</span><span class="s0">&lt;/code&gt; </span><span class="s1">function.</span>
+
+<span class="s0">&lt;h4&gt;</span><span class="s1">Theory</span><span class="s0">&lt;/h4&gt;</span>
+<span class="s1">Similar to a multi-class perceptron classifier, multi-class MIRA classifier also keeps a </span>
+ <span class="s1">weight vector </span><span class="s0">&lt;IMG</span>
+     <span class="s2">WIDTH</span><span class="s3">=&quot;24&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;17&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;BOTTOM&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+     <span class="s2">SRC</span><span class="s3">=&quot;images/img31_new.png&quot;</span>
+     <span class="s2">ALT</span><span class="s3">=&quot;$w^y$&quot;</span><span class="s0">&gt; </span><span class="s1">of each label </span><span class="s0">&lt;IMG</span>
+     <span class="s2">WIDTH</span><span class="s3">=&quot;13&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+     <span class="s2">SRC</span><span class="s3">=&quot;images/img32_new.png&quot;</span>
+     <span class="s2">ALT</span><span class="s3">=&quot;$y$&quot;</span><span class="s0">&gt;</span><span class="s1">.</span>
+     <span class="s1">We also scan over the data, one instance at a</span>
+    <span class="s1">time.  When we come to an instance </span><span class="s0">&lt;IMG</span>
+     <span class="s2">WIDTH</span><span class="s3">=&quot;41&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;32&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+     <span class="s2">SRC</span><span class="s3">=&quot;images/img35.png&quot;</span>
+     <span class="s2">ALT</span><span class="s3">=&quot;$(f, y)$&quot;</span><span class="s0">&gt;</span><span class="s1">, we find the label with highest score:</span>
+    <span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;IMG</span>
+     <span class="s2">SRC</span><span class="s3">=&quot;images/img36.png&quot;</span>
+     <span class="s0">/&gt;</span>
+    <span class="s0">&lt;/DIV&gt;</span>
+    <span class="s0">&lt;P&gt;&lt;/P&gt;</span>
+    <span class="s1">We compare </span><span class="s0">&lt;IMG</span>
+     <span class="s2">WIDTH</span><span class="s3">=&quot;17&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;32&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+     <span class="s2">SRC</span><span class="s3">=&quot;images/img37.png&quot;</span>
+     <span class="s2">ALT</span><span class="s3">=&quot;$y'$&quot;</span><span class="s0">&gt; </span><span class="s1">to the true label </span><span class="s0">&lt;IMG</span>
+     <span class="s2">WIDTH</span><span class="s3">=&quot;13&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+     <span class="s2">SRC</span><span class="s3">=&quot;images/img32_new.png&quot;</span>
+     <span class="s2">ALT</span><span class="s3">=&quot;$y$&quot;</span><span class="s0">&gt;</span><span class="s1">.  If </span><span class="s0">&lt;IMG</span>
+     <span class="s2">WIDTH</span><span class="s3">=&quot;47&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;32&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+     <span class="s2">SRC</span><span class="s3">=&quot;images/img38.png&quot;</span>
+     <span class="s2">ALT</span><span class="s3">=&quot;$y' = y$&quot;</span><span class="s0">&gt;</span><span class="s1">, we've gotten the</span>
+    <span class="s1">instance correct, and we do nothing.  Otherwise, we guessed </span><span class="s0">&lt;IMG</span>
+     <span class="s2">WIDTH</span><span class="s3">=&quot;17&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;32&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+     <span class="s2">SRC</span><span class="s3">=&quot;images/img37.png&quot;</span>
+     <span class="s2">ALT</span><span class="s3">=&quot;$y'$&quot;</span><span class="s0">&gt; </span><span class="s1">but</span>
+    <span class="s1">we should have guessed </span><span class="s0">&lt;IMG</span>
+     <span class="s2">WIDTH</span><span class="s3">=&quot;13&quot; </span><span class="s2">HEIGHT</span><span class="s3">=&quot;30&quot; </span><span class="s2">ALIGN</span><span class="s3">=&quot;MIDDLE&quot; </span><span class="s2">BORDER</span><span class="s3">=&quot;0&quot;</span>
+     <span class="s2">SRC</span><span class="s3">=&quot;images/img32_new.png&quot;</span>
+     <span class="s2">ALT</span><span class="s3">=&quot;$y$&quot;</span><span class="s0">&gt;</span><span class="s1">. Unlike perceptron, we update the weight vectors of these labels with variable step size:</span>
+    <span class="s0">&lt;BR&gt;&lt;P&gt;&lt;/P&gt;</span>
+    <span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;IMG</span>
+     <span class="s2">SRC</span><span class="s3">=&quot;images/img59.png&quot;</span>
+     <span class="s0">&gt;</span>
+    <span class="s0">&lt;/DIV&gt;</span>
+    <span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;IMG</span>
+     <span class="s2">SRC</span><span class="s3">=&quot;images/img60.png&quot;</span>
+     <span class="s0">&gt;     </span>
+    <span class="s0">&lt;/DIV&gt;</span>
+    <span class="s1">where </span><span class="s0">&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/img66.png&quot;</span><span class="s0">&gt; </span><span class="s1">is chosen such that it minimizes</span>
+    <span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;IMG</span>
+     <span class="s2">SRC</span><span class="s3">=&quot;images/img61.png&quot;</span>
+     <span class="s0">&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+    
+    <span class="s1">subject to the condition that</span>
+    <span class="s0">&lt;IMG</span>
+     <span class="s2">SRC</span><span class="s3">=&quot;images/img62.png&quot; </span><span class="s2">align</span><span class="s3">=&quot;bottom&quot;</span>
+     <span class="s0">&gt;</span>
+     <span class="s0">&lt;/div&gt;</span>
+     <span class="s0">&lt;br/&gt;</span>
+     <span class="s1">which is equivalent to </span>
+     <span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+     <span class="s0">&lt;IMG</span>
+      <span class="s2">SRC</span><span class="s3">=&quot;images/img63.png&quot;</span>
+      <span class="s2">align</span><span class="s3">=&quot;middle&quot;</span>
+      <span class="s0">&gt;</span>
+     <span class="s1">subject to </span>
+     <span class="s0">&lt;IMG</span>
+      <span class="s2">SRC</span><span class="s3">=&quot;images/img65.png&quot; </span><span class="s2">align</span><span class="s3">=&quot;middle&quot;</span>
+      <span class="s0">&gt; </span><span class="s1">and </span>
+      <span class="s0">&lt;IMG</span>
+        <span class="s2">SRC</span><span class="s3">=&quot;images/img66.png&quot; </span><span class="s2">align</span><span class="s3">=&quot;middle&quot;</span>
+        <span class="s0">&gt;</span>
+      <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;P&gt;&lt;/P&gt;</span>
+    <span class="s1">Note that, </span><span class="s0">&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/img68.png&quot; </span><span class="s2">align</span><span class="s3">=&quot;middle&quot;</span><span class="s0">/&gt;</span><span class="s1">, so the condition </span><span class="s0">&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/img66.png&quot; </span><span class="s2">align</span><span class="s3">=&quot;middle&quot;</span><span class="s0">/&gt; </span><span class="s1">is always true given </span><span class="s0">&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/img65.png&quot; </span><span class="s2">align</span><span class="s3">=&quot;middle&quot;</span><span class="s0">/&gt; </span><span class="s1">Solving this simple problem, we then have</span>
+    <span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+     <span class="s0">&lt;IMG</span>
+      <span class="s2">SRC</span><span class="s3">=&quot;images/img64.png&quot;</span>
+      <span class="s0">&gt;</span>
+     <span class="s0">&lt;/div&gt;</span>
+     <span class="s1">However, we would like to cap the maximum possible value of </span><span class="s0">&lt;img </span><span class="s2">src</span><span class="s3">=&quot;images/tau.png&quot;</span><span class="s0">&gt; </span><span class="s1">by a positive constant C, which leads us to </span>
+     <span class="s0">&lt;DIV </span><span class="s2">ALIGN</span><span class="s3">=&quot;CENTER&quot;</span><span class="s0">&gt;</span>
+      <span class="s0">&lt;IMG</span>
+       <span class="s2">SRC</span><span class="s3">=&quot;images/img67.png&quot;</span>
+       <span class="s0">&gt;</span>
+      <span class="s0">&lt;/div&gt;</span>
+<span class="s0">&lt;br/&gt;</span>
+<span class="s0">&lt;em&gt;&lt;strong&gt;</span><span class="s1">Question 5 (6 points)</span><span class="s0">&lt;/strong&gt;&lt;/em&gt; </span><span class="s1">Implement </span><span class="s0">&lt;code&gt;</span><span class="s1">trainAndTune</span><span class="s0">&lt;/code&gt; </span><span class="s1">in </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/mira.html&quot;</span><span class="s0">&gt;</span><span class="s1">mira.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;</span><span class="s1">.   </span>
+<span class="s1">This method should train a MIRA classifier using each value of </span><span class="s0">&lt;em&gt;</span><span class="s1">C</span><span class="s0">&lt;/em&gt; </span><span class="s1">in </span><span class="s0">&lt;code&gt;</span><span class="s1">Cgrid</span><span class="s0">&lt;/code&gt;</span><span class="s1">.  </span>
+<span class="s1">Evaluate accuracy on the held-out validation set for each </span><span class="s0">&lt;em&gt;</span><span class="s1">C</span><span class="s0">&lt;/em&gt; </span><span class="s1">and choose</span>
+<span class="s1">the </span><span class="s0">&lt;em&gt;</span><span class="s1">C</span><span class="s0">&lt;/em&gt; </span><span class="s1">with the highest validation accuracy.  In case of ties,</span>
+<span class="s1">prefer the </span><span class="s0">&lt;em&gt;</span><span class="s1">lowest</span><span class="s0">&lt;/em&gt; </span><span class="s1">value of </span><span class="s0">&lt;em&gt;</span><span class="s1">C</span><span class="s0">&lt;/em&gt;</span><span class="s1">.  Test your MIRA implementation with:</span>
+
+<span class="s0">&lt;pre&gt;</span><span class="s1">python dataClassifier.py -c mira --autotune </span><span class="s0">&lt;/pre&gt;</span>
+
+<span class="s0">&lt;p&gt;&lt;strong&gt;</span><span class="s1">Hints and observations:</span><span class="s0">&lt;/strong&gt;</span>
+<span class="s0">&lt;ul&gt; </span>
+    <span class="s0">&lt;li&gt;</span><span class="s1">Pass through the data </span><span class="s0">&lt;code&gt;</span><span class="s1">self.max_iterations</span><span class="s0">&lt;/code&gt; </span><span class="s1">times during training.</span>
+    <span class="s0">&lt;li&gt;</span><span class="s1">Store the weights learned using the best value of </span><span class="s0">&lt;em&gt;</span><span class="s1">C</span><span class="s0">&lt;/em&gt; </span><span class="s1">at the end in </span><span class="s0">&lt;code&gt;</span><span class="s1">self.weights</span><span class="s0">&lt;/code&gt;</span><span class="s1">, so that these weights can be used to test your classifier.</span>
+    <span class="s0">&lt;li&gt;</span><span class="s1">To use a fixed value of </span><span class="s0">&lt;em&gt;</span><span class="s1">C=0.001</span><span class="s0">&lt;/em&gt;</span><span class="s1">, remove the </span><span class="s0">&lt;code&gt;</span><span class="s1">--autotune</span><span class="s0">&lt;/code&gt; </span><span class="s1">option from the command above.  </span>
+    <span class="s0">&lt;li&gt;</span><span class="s1">Validation and test accuracy when using </span><span class="s0">&lt;code&gt;</span><span class="s1">--autotune</span><span class="s0">&lt;/code&gt; </span><span class="s1">should be in the 60's.</span>
+	<span class="s0">&lt;li&gt;</span><span class="s1">The same code for returning high odds features in your perceptron implementation should also work for MIRA if you're curious what your classifier is learning.</span>
+<span class="s0">&lt;/ul&gt;</span>
+
+
+<span class="s0">&lt;h2&gt;</span><span class="s1">Feature Design</span><span class="s0">&lt;/h2&gt;</span>
+
+<span class="s0">&lt;p&gt;</span><span class="s1">Building classifiers is only a small part of getting a good system working </span>
+<span class="s1">for a task.  Indeed, the main difference between a good classification system and a bad one is </span>
+<span class="s1">usually not the classifier itself (e.g. perceptron vs. naive Bayes), but rather </span>
+<span class="s1">the quality of the features used.  So far, we have used the simplest </span>
+<span class="s1">possible features: the identity of each pixel (being on/off).</span>
+
+<span class="s0">&lt;p&gt;</span><span class="s1">To increase your classifier's accuracy further, you will need to extract </span>
+<span class="s1">more useful features from the data.  The </span><span class="s0">&lt;code&gt;</span><span class="s1">EnhancedFeatureExtractorDigit</span><span class="s0">&lt;/code&gt; </span>
+<span class="s1">in </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/dataClassifier.html&quot;</span><span class="s0">&gt;</span><span class="s1">dataClassifier.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt; </span><span class="s1">is your new playground.  When analyzing your classifiers' results, you should look at some of your errors and look for characteristics of the input that would </span>
+<span class="s1">give the classifier useful information about the label.  You can add code to the </span><span class="s0">&lt;code&gt;</span><span class="s1">analysis</span><span class="s0">&lt;/code&gt; </span><span class="s1">function in </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/dataClassifier.html&quot;</span><span class="s0">&gt;</span><span class="s1">dataClassifier.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt; </span><span class="s1">to inspect what your classifier is doing.</span>
+<span class="s1">For instance in the digit data, consider the number of </span>
+<span class="s1">separate, connected regions of white pixels, which varies by digit type.  </span>
+<span class="s1">1, 2, 3, 5, 7 tend to have one </span>
+<span class="s1">contiguous region of white space while the loops in 6, 8, 9 create more.  </span>
+<span class="s1">The number of white regions in a </span>
+<span class="s1">4 depends on the writer.  This is an example of a feature that is not directly </span>
+<span class="s1">available to the classifier from the per-pixel information.  If your feature </span>
+<span class="s1">extractor adds new features that encode these properties, </span>
+<span class="s1">the classifier will be able exploit them.  Note that some features may require non-trivial computation to extract, so write efficient and correct code.</span>
+
+<span class="s0">&lt;p&gt;</span>
+<span class="s0">&lt;em&gt;&lt;strong&gt;</span><span class="s1">Question 6 (6 points)</span><span class="s0">&lt;/strong&gt;&lt;/em&gt;</span>
+<span class="s1">Add new features for the digit dataset in the </span>
+<span class="s0">&lt;code&gt;</span><span class="s1">EnhancedFeatureExtractorDigit</span><span class="s0">&lt;/code&gt; </span><span class="s1">function </span><span class="s0">&lt;em&gt;</span><span class="s1">in such a way that it works</span>
+<span class="s1">with your implementation of the naive Bayes classifier</span><span class="s0">&lt;/em&gt;</span><span class="s1">: this means that </span>
+<span class="s1">for this part, you are restricted to features which can take a finite number of discrete</span>
+<span class="s1">values (and if you have assumed that features are binary valued, then you are restricted to binary features).</span>
+<span class="s1">Note that you can encode a feature which takes 3 values [1,2,3] by using 3</span>
+<span class="s1">binary features, of which only one is on at the time, to indicate which</span>
+<span class="s1">of the three possibilities you have. In theory, features aren't conditionally independent as naive Bayes requires,</span>
+<span class="s1">but your classifier can still work well in practice.  We will test your classifier with the following command:</span>
+
+<span class="s0">&lt;pre&gt;</span><span class="s1">python dataClassifier.py -d digits -c naiveBayes -f -a -t 1000  </span><span class="s0">&lt;/pre&gt;</span>
+
+<span class="s1">With the basic features (without the </span><span class="s0">&lt;code&gt;</span><span class="s1">-f</span><span class="s0">&lt;/code&gt; </span><span class="s1">option), your optimal</span>
+<span class="s1">choice of smoothing parameter should yield 82% on the validation set with a</span>
+<span class="s1">test performance of 78%. You will receive 3 points for implementing new feature(s)</span>
+<span class="s1">which yield any improvement at all.  You will receive 3 additional points if your new feature(s) give you a </span>
+<span class="s1">test performance greater than or equal to 84% with the above command.</span>
+
+<span class="s0">&lt;p&gt;</span>
+<span class="s0">&lt;em&gt;&lt;strong&gt;</span><span class="s1">Mini Contest (3 points extra credit)</span><span class="s0">&lt;/strong&gt;&lt;/em&gt;</span>
+<span class="s1">How well can you classify? Fill in code in </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/minicontest.html&quot;</span><span class="s0">&gt;</span><span class="s1">minicontest.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt; </span><span class="s1">for training and classification.</span>
+<span class="s1">To run your classifier, use:</span>
+
+<span class="s0">&lt;pre&gt;</span><span class="s1">python dataClassifier.py -d digits -c minicontest</span><span class="s0">&lt;/pre&gt;</span>
+
+<span class="s1">When you specify the minicontest classifier, features are extracted using</span>
+<span class="s0">&lt;code&gt;</span><span class="s1">contestFeatureExtractorDigit</span><span class="s0">&lt;/code&gt;</span><span class="s1">.</span>
+
+<span class="s1">You are free to implement any classifier you want. You might consider modifying Mira or NaiveBayes,</span>
+<span class="s1">for example. You should encode any tuning parameters directly in </span><span class="s0">&lt;code&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;docs/minicontest.html&quot;</span><span class="s0">&gt;</span><span class="s1">minicontest.py</span><span class="s0">&lt;/a&gt;&lt;/code&gt;</span><span class="s1">.</span>
+
+<span class="s1">We will allow your classifier to train on 5000 examples, but will test you on a new set of 1000 digits.</span>
+
+<span class="s1">The 3 teams with the highest classification accuracy will receive 3, 2, and 1 points, respectively.</span>
+<span class="s1">Don't forget to describe what you've done in your comments.</span>
+
+<span class="s0">&lt;p&gt;&lt;em&gt; </span><span class="s1">Congratulations! You're finished with the CS 188 projects.</span><span class="s0">&lt;/em&gt;</span>
+<span class="s0">&lt;/body&gt;</span>
+<span class="s0">&lt;/html&gt;</span>
+</pre>
+</body>
+</html>
